@@ -3,7 +3,7 @@
 <strong>Project Team:</strong> Andrew Hinojosa, Charles Clemens, Mike Filicetti, Mike Goseco, Julie Ly</br>
 <strong>Name of Project:</strong> PiPA (Pi Personal Assistant)
 
-<h2>Vision</h2>
+<h2><strong>Vision</strong></h2>
 
 <strong>What is the vision of this product?</strong>
 To create an at-home assistant that provides users the ability to create, update, read, and delete a to-do-list using voice commands and a web app.
@@ -14,11 +14,11 @@ Virtual assistants are everywhere now, making life easier than ever for us. Our 
 <strong>Why should we care?</strong>
 While there is a ton of documentation for building virtual assistants using Python and other languages, we have a unique opportunity to explore this space using C#. It will be a very engaging process to work to translate our needs from one language to another, and even adapt our own implementations. This will provide the unique opportunity to contribute to a community that has given so much to us. Additionally, it is really great knowing we are the first team to tackle this in the 6 ASP.NET Core cohorts to pass through Code Fellows.
 
-<h2>Scope</h2>
+<h2><strong>Scope</strong></h2>
 
 <strong>IN</strong>
 <ul>
-<li>PiPA (Hardware)</li>
+<li><strong>PiPA (Hardware)</strong></li>
 <ul>
 <li>The device will accept verbal commands from the user</li>
 <li>The device will respond with a “chime” when prompted to let the user know it is listening</li>
@@ -27,7 +27,7 @@ While there is a ton of documentation for building virtual assistants using Pyth
 </ul>
 
 <ul>
-<li>Web App</li>
+<li><strong>Web App</strong></li>
 <ul>
 <li>The web app will utilize Identity to allow users to sign-in to their account</li>
 <li>The web app will serve as a dashboard for device users</li>
@@ -40,7 +40,7 @@ While there is a ton of documentation for building virtual assistants using Pyth
 <li>The device will not have functionality beyond the to-do-list application</li>
 </ul>
 
-<h2>Minimum MVP</h2>
+<h2><strong>Minimum MVP</strong></h2>
 
 Voice-activated virtual assistant running on the Nano Framework (C#) utilizing a Raspberry Pi, bluetooth speaker, and omni-directional microphone.
 
@@ -52,13 +52,13 @@ Voice-activated virtual assistant running on the Nano Framework (C#) utilizing a
 <li>Bluetooth powered speaker driving audio control</li>
 </ul>
 
-<h2>Stretch Goals</h2>
+<h2><strong>Stretch Goals</strong></h2>
 <ul>
 <li>Users can create multiple to-do-lists</li>
 <li>Incorporate third-party APIs to enhance functionality</li>
 </ul>
 
-<h2>Functional Requirements</h2>
+<h2><strong>Functional Requirements</strong></h2>
 <ul>
 <li>A user can interact with PiPA via voice command</li>
 <li>A user can create a to-do-list task via voice command</li>
@@ -70,7 +70,7 @@ Voice-activated virtual assistant running on the Nano Framework (C#) utilizing a
 <li>Web app utilizes XUnit testing to ensure properly tested code and appropriate code coverage</li>
 </ul>
 
-<h2>Non-Functional Requirements</h2>
+<h2><strong>Non-Functional Requirements</strong></h2>
 <h3>Integrability</h3>
 <ul>
 <li>Achieving system integration by linking together the hardaware and software components of the project.</li>
@@ -86,7 +86,7 @@ Voice-activated virtual assistant running on the Nano Framework (C#) utilizing a
 <li>Repository will house code-base and provide users the ability to create their own PiPA given the appropriate components.</li>
 </ul>
 
-<h2>Data Flow</h2>
+<h2><strong>Data Flow</strong></h2>
 <ul>
 <li>Users give verbal commands to PiPA to add task</li>
 <li>PiPA persists the given information to our Azure database</li>
