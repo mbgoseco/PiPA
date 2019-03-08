@@ -6,7 +6,7 @@
 <h2>Vision</h2>
 
 <strong>What is the vision of this product?</strong>
-To create an at-home assistant that provides users the ability to create, update, read, and delete a to-do-list via voice command.
+To create an at-home assistant that provides users the ability to create, update, read, and delete a to-do-list using voice commands and a web app.
 
 <strong>What pain point does it solve?</strong>
 Virtual assistants are everywhere now, making life easier than ever for us. Our project would serve as an assistant in a world that asks us to do so many things in so little time. By simply being able to say what you need, rather than taking the time to pull out your phone or planner and write it down, you’re offered a new level of freedom and increased daily efficiency. By providing users the ability to build to-do lists, write notes, and more, we have the ability to explore a new technology that we can actually put to good use.
@@ -22,7 +22,7 @@ While there is a ton of documentation for building virtual assistants using Pyth
 <ul>
 <li>The device will accept verbal commands from the user</li>
 <li>The device will respond with a “chime” when prompted to let the user know it is listening</li>
-<li>Users will have the ability to add and delete tasks to their to-do list</li>
+<li>Users will have the ability to add tasks to their to-do list</li>
 </ul>
 </ul>
 
@@ -61,7 +61,7 @@ Voice-activated virtual assistant running on the Nano Framework (C#) utilizing a
 <h2>Functional Requirements</h2>
 <ul>
 <li>A user can interact with PiPA via voice command</li>
-<li>A user can create or delete a to-do-list task via voice command</li>
+<li>A user can create a to-do-list task via voice command</li>
 <li>A user can create an account in the web app</li>
 <li>A user can sign-in and log out of their account in the web app</li>
 <li>A user can create, update, view, and delete to-do-list tasks in the web app</li>
