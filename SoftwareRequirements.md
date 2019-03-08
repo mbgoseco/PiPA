@@ -65,14 +65,31 @@ Voice-activated virtual assistant running on the Nano Framework (C#) utilizing a
 <li>A user can create an account in the web app</li>
 <li>A user can sign-in and log out of their account in the web app</li>
 <li>A user can create, update, view, and delete to-do-list tasks in the web app</li>
-</ul>
-
-<h2>Non-Functional Requirements</h2>
-<ul>
 <li>PiPA utilizes either the Micro or Nano framework to implement the ASP.NET Core application device-side</li>
 <li>Web app utilizes ASP.NET Identity</li>
 <li>Web app utilizes XUnit testing to ensure properly tested code and appropriate code coverage</li>
 </ul>
 
+<h2>Non-Functional Requirements</h2>
+<h3>Integrability</h3>
+<ul>
+<li>Achieving system integration by linking together the hardaware and software components of the project.</li>
+</ul>
+
+<h3>Documentation</h3>
+<ul>
+<li>Users will be presented a robust set of documentation regarding the full funtionality of the web app and PiPA.</li>
+</ul>
+
+<h3>Open Source</h3>
+<ul>
+<li>Repository will house code-base and provide users the ability to create their own PiPA given the appropriate components.</li>
+</ul>
+
 <h2>Data Flow</h2>
-Upon login to the web app, the user will be greeting by a clean, performant user interface. Within the web app we will have models for ApplicationUser, List, and Task. Users will sign-in and their data will persist to a user db to allow them to access their tasks. PiPA will interface with the web application, allowing for seamless transference of data between the hardware and software. Requests will be sent appropriately for each of the four CRUD operations through the web app. Any changes will be available to the hardware, as they will both operate off the same schema.
+<ul>
+<li>Users give verbal commands to PiPA to add task</li>
+<li>PiPA persists the given information to our Azure database</li>
+<li>Users can then log in to the web app to further edit, view, and delete tasks</li>
+<li>All changes persist to the Azure database so that both the web app and PiPA have access to them</li>
+</ul>
