@@ -1,6 +1,6 @@
 <h1 align="center">Software Requirements</h1>
 
-<strong>Project Team:</strong> Andrew Hinojosa, Charles Clemens, Mike Filicetti, Mike Goseco, Julie Ly
+<strong>Project Team:</strong> Andrew Hinojosa, Charles Clemens, Mike Filicetti, Mike Goseco, Julie Ly</br>
 <strong>Name of Project:</strong> PiPA (Pi Personal Assistant)
 
 <h2>Vision</h2>
