@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PiPA.Models.Interfaces
 {
-    interface ITasks
+    public interface ITasks
     {
         Task CreateTask(Tasks tasks);
         Task<Tasks> GetOneTask(int id);

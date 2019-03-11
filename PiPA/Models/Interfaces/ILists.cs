@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PiPA.Models.Interfaces
 {
-    interface ILists
+    public interface ILists
     {
         Task CreateList(Lists lists);
         Task<Lists> GetOneList(int id);
