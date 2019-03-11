@@ -62,7 +62,7 @@ namespace PiPA.Data
                );
         }
 
-        public DbSet<Lists> Lists { get; set; }
-        public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<Lists> ListsTable { get; set; }
+        public DbSet<Tasks> TasksTable { get; set; }
     }
 }

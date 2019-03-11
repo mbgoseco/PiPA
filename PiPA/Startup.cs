@@ -9,6 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PiPA.Data;
+using PiPA.Models.Services;
+using PiPA.Models.Interfaces;
+using PiPA.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PiPA
 {
@@ -31,6 +37,9 @@ namespace PiPA
             services.AddDbContext<PADbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:PADefaultConnection"]));
 
             services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ADefaultConnection"]));
+
+            services.AddScoped<ILists, ListsManagementServices>();
+            services.AddScoped<ITasks, TasksManagementServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +51,7 @@ namespace PiPA
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
-
+            app.UseAuthentication();
             app.UseStaticFiles();
 
             if (env.IsDevelopment())
