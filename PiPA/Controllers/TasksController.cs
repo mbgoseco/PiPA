@@ -30,13 +30,13 @@ namespace PiPA.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID, ListID, TaskName, Description, DateCreated, PlannedDateComplete, CompleteDate, IsComplete")] Tasks tasks)
+        public async Task<IActionResult> Create([Bind("ID, TaskName, Description, DateCreated, PlannedDateComplete")] Tasks tasks)
         {
             Tasks newtask = tasks;
             if (ModelState.IsValid)
             {
                 newtask.ListID = 1; //for now since we only have one list
+                newtask.CompletedDate = new DateTime(3000, 1, 1, 0, 0, 0); // since just created no complete date yet and can't do null
                 newtask.IsComplete = false; // since it was just created it isn't done yet
                 await _tasks.CreateTask(newtask);
                 return RedirectToAction(nameof(Index));
@@ -63,7 +63,7 @@ namespace PiPA.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID, ListID, TaskName, Description, DateCreated, PlannedDateComplete, CompleteDate, IsComplete")] Tasks tasks)
+        public async Task<IActionResult> Edit(int id, [Bind("ID, TaskName, Description, PlannedDateComplete, CompletedDate, IsComplete")] Tasks tasks)
         {
             await _tasks.UpdateTask(tasks);
             return RedirectToAction(nameof(Index));

@@ -6,24 +6,21 @@
 
 <h1>Create Task</h1>
 
-<form asp-action="Create">
+<form asp-action="Create" method="post">
     <div>
-        <label asp-for="TaskName"></label>
+        <label asp-for="TaskName">Task Name: </label>
         <input asp-for="TaskName" />
 
-        <label asp-for="Description"></label>
+        <label asp-for="Description"> Description: </label>
         <input asp-for="Description" />
 
-        <label asp-for="DateCreated"></label>
+        <label asp-for="DateCreated">Date created: </label>
         <input asp-for="DateCreated" />
 
-        <label asp-for="PlannedDateComplete"></label>
+        <label asp-for="PlannedDateComplete">Planned date of completion: </label>
         <input asp-for="PlannedDateComplete" />
 
-        <label asp-for="CompleteDate"></label>
-        <input asp-for="CompleteDate" />
-
-        <input type="submit" value="Create" />
+        <input type="submit" value="Create"/>
     </div>
 </form>
 
