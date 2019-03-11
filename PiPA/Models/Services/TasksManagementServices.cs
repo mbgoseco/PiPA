@@ -18,10 +18,7 @@ namespace PiPA.Models.Services
 
         public async Task CreateTask(Tasks tasks)
         {
-            if (await _context.TasksTable.FirstOrDefaultAsync(t => t.ID == tasks.ID) == null)
-            {
-                _context.TasksTable.Add(tasks);
-            }
+            _context.TasksTable.Add(tasks);
             await _context.SaveChangesAsync();
         }
 

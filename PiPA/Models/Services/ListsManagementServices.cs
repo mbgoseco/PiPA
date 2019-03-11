@@ -1,4 +1,5 @@
-﻿using PiPA.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PiPA.Data;
 using PiPA.Models.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,29 +16,37 @@ namespace PiPA.Models.Services
             _context = context;
         }
 
-        public Task CreateList(Lists lists)
+        public async Task CreateList(Lists lists)
         {
-            throw new NotImplementedException();
+            _context.ListsTable.Add(lists);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteList(int id)
+        public async Task DeleteList(int id)
         {
-            throw new NotImplementedException();
+            Lists lists = await _context.ListsTable.FindAsync(id);
+            if (lists != null)
+            {
+                _context.ListsTable.Remove(lists);
+                await _context.SaveChangesAsync();
+            }
         }
 
-        public Task<List<Lists>> GetAllLists()
+        public async Task<List<Lists>> GetAllLists()
         {
-            throw new NotImplementedException();
+            return await _context.ListsTable.ToListAsync();
         }
 
-        public Task<Lists> GetOneList(int id)
+        public async Task<Lists> GetOneList(int id)
         {
-            throw new NotImplementedException();
+            Lists lists = await _context.ListsTable.FirstOrDefaultAsync(t => t.ID == id);
+            return lists;
         }
 
-        public Task UpdateList(Lists lists)
+        public async Task UpdateList(Lists lists)
         {
-            throw new NotImplementedException();
+            _context.ListsTable.Update(lists);
+            await _context.SaveChangesAsync();
         }
     }
 }
