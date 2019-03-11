@@ -1,3 +1,35 @@
 ﻿@{
     Layout = "_Layout";
 }
+
+<form action="/" method="post">
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+            <input class="input" type="email" placeholder="Enter email" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left">
+            <input class="input" type="password" placeholder="Enter password" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-passport"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link" type="submit">Submit</button>
+        </div>
+        <div class="control">
+            <button class="button is-text">Cancel</button>
+        </div>
+    </div>
+</form>
