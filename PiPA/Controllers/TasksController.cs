@@ -49,5 +49,24 @@ namespace PiPA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var tasks = await _tasks.GetOneTask((int)id);
+            await _tasks.DeleteTask((int)id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+
+            await _tasks.DeleteTask(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
