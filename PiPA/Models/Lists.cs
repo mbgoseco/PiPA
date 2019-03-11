@@ -7,5 +7,8 @@ namespace PiPA.Models
 {
     public class Lists
     {
+        public int ID { get; set; }
+        public string UserID { get; set; }
+        public string ListName { get; set; }
     }
 }
