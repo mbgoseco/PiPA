@@ -19,7 +19,15 @@ namespace PiPA.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //might need to go back to get task by user
             return View(await _tasks.GetAllTasks());
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var oneTask = await _tasks.GetOneTask(id);
+
+            return View(oneTask);
         }
     }
 }
