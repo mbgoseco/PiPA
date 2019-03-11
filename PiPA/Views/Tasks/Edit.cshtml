@@ -1,3 +1,31 @@
-﻿@{
+﻿@model PiPA.Models.Tasks
+
+@{
     Layout = "_Layout";
 }
+
+<h1>Edit Task</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ID" />
+
+    <label asp-for="TaskName"></label>
+    <input asp-for="TaskName" />
+
+    <label asp-for="Description"></label>
+    <input asp-for="Description" />
+
+    <label asp-for="PlannedDateComplete"></label>
+    <input asp-for="PlannedDateComplete" />
+
+    <label asp-for="CompletedDate"></label>
+    <input asp-for="CompletedDate" />
+
+    @*might want to change to radio button or check box*@
+    <label asp-for="IsComplete"></label>
+    <input asp-for="IsComplete" />
+
+    <input type="submit" value="Save" />
+</form>
+
+<a asp-action="Index">Back to All Tasks</a>
