@@ -1,0 +1,29 @@
+﻿@model PiPA.Models.Tasks
+
+@{
+    Layout = "_Layout";
+}
+
+<h1>Create Task</h1>
+
+<form asp-action="Create">
+    <div>
+        <label asp-for="TaskName"></label>
+        <input asp-for="TaskName" />
+
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+
+        <label asp-for="DateCreated"></label>
+        <input asp-for="DateCreated" />
+
+        <label asp-for="PlannedDateComplete"></label>
+        <input asp-for="PlannedDateComplete" />
+
+        <label asp-for="CompleteDate"></label>
+        <input asp-for="CompleteDate" />
+
+        <input type="submit" value="Create" />
+    </div>
+</form>
+

@@ -24,6 +24,26 @@ namespace PiPA.Controllers
             return View(await _tasks.GetAllTasks());
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("ID, ListID, TaskName, Description, DateCreated, PlannedDateComplete, CompleteDate, IsComplete")] Tasks tasks)
+        {
+            Tasks newtask = tasks;
+            if (ModelState.IsValid)
+            {
+                newtask.ListID = 1; //for now since we only have one list
+                newtask.IsComplete = false; // since it was just created it isn't done yet
+                await _tasks.CreateTask(newtask);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(tasks);
+        }
+
         public async Task<IActionResult> Details(int id)
         {
             var oneTask = await _tasks.GetOneTask(id);
