@@ -26,7 +26,16 @@
         <div id="desktopNavbar" class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" asp-page="/Home">Home</a>
-                <a class="navbar-item" href="">About</a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="#">About</a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="#">What is PiPA?</a>
+                        <a class="navbar-item" href="#">Procurement</a>
+                        <a class="navbar-item" href="#">Setup</a>
+                    </div>
+                </div>
+                <a class="navbar-item" href=""
             </div>
             <div class="navbar-end">
 
