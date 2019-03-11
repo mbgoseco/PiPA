@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PiPA.Models;
 using PiPA.Models.Interfaces;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -29,5 +30,24 @@ namespace PiPA.Controllers
 
             return View(oneTask);
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var oneTask = await _tasks.GetOneTask(id);
+            if (oneTask == null)
+            {
+                return NotFound();
+            }
+            return View(oneTask);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ID, ListID, TaskName, Description, DateCreated, PlannedDateComplete, CompleteDate, IsComplete")] Tasks tasks)
+        {
+            await _tasks.UpdateTask(tasks);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
