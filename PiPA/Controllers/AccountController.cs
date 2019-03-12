@@ -37,6 +37,7 @@ namespace PiPA.Controllers
         [HttpPost]
         public IActionResult Register(RegisterViewModel rvm)
         {
+
             if (ModelState.IsValid)
             {
                 //Create new application user
@@ -48,9 +49,11 @@ namespace PiPA.Controllers
                     LastName = rvm.LastName,
                     Birthday = rvm.Birthday,
                 };
+                return RedirectToAction("Index", "Tasks");
             }
             return View(rvm);
         }
+
         /// <summary>
         /// Gets login view and returns it back to the user
         /// </summary>
