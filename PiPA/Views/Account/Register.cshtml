@@ -4,11 +4,11 @@
     Layout = "_Layout";
 }
 
-<form action="/" method="post">
+<form method="post">
     <div class="field">
         <label class="label">First Name</label>
         <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="What's your first name?" value="">
+            <input asp-for="FirstName" class="input" type="text" placeholder="What's your first name?" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
             </span>
@@ -18,7 +18,7 @@
     <div class="field">
         <label class="label">Last Name</label>
         <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="Whats your last name?" value="">
+            <input asp-for="LastName" class="input" type="text" placeholder="Whats your last name?" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-user"></i>
             </span>
@@ -28,7 +28,7 @@
     <div class="field">
         <label class="label">Birthdate</label>
         <div class="control has-icons-left">
-            <input class="input" type="datetime" placeholder="Whats your birth date?" value="">
+            <input asp-for="Birthday" class="input" type="datetime" placeholder="Whats your birth date?" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-birthday-cake"></i>
             </span>
@@ -38,7 +38,7 @@
     <div class="field">
         <label class="label">Email</label>
         <div class="control has-icons-left">
-            <input class="input" type="email" placeholder="Enter email" value="">
+            <input asp-for="Email" class="input" type="email" placeholder="Enter email" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
             </span>
@@ -48,7 +48,7 @@
     <div class="field">
         <label class="label">Password</label>
         <div class="control has-icons-left">
-            <input class="input" type="password" placeholder="Enter password" value="">
+            <input asp-for="Password" class="input" type="password" placeholder="Enter password" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-passport"></i>
             </span>
