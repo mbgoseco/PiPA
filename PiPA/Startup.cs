@@ -33,9 +33,9 @@ namespace PiPA
         {
             services.AddMvc();
 
-            services.AddDbContext<PADbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:PADefaultConnection"]));
+            services.AddDbContext<PADbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
-            services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ADefaultConnection"]));
+            services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ApplicationProductionConnection"]));
 
             services.AddScoped<ILists, ListsManagementServices>();
             services.AddScoped<ITasks, TasksManagementServices>();
