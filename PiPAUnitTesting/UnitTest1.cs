@@ -1,6 +1,10 @@
+using PiPA.Data;
 using PiPA.Models;
 using System;
 using Xunit;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using PiPA.Models.Services;
 
 namespace PiPAUnitTesting
 {
@@ -42,6 +46,135 @@ namespace PiPAUnitTesting
             testList4.ListName = "aListName";
             testList4.ListName = "NewListName";
             Assert.Equal("NewListName", testList4.ListName);
+        }
+
+        //Create list
+        [Fact]
+        public async void TestCreateList()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("CreateList").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+
+                Lists testLists5 = new Lists();
+                testLists5.ID = 1;
+                testLists5.UserID = "aUserName";
+                testLists5.ListName = "ToDoList";
+
+                ListsManagementServices ListService = new ListsManagementServices(context);
+
+                await ListService.CreateList(testLists5);
+
+                var List1Answer = context.ListsTable.FirstOrDefault(c => c.ID == testLists5.ID);
+
+                Assert.Equal(testLists5, List1Answer);
+            }
+        }
+
+        //getonelist
+        [Fact]
+        public async void TestGetOneList()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("GetOneList").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+
+                Lists testLists6 = new Lists();
+                testLists6.ID = 1;
+                testLists6.UserID = "aUserName";
+                testLists6.ListName = "ToDoList";
+
+                ListsManagementServices ListService = new ListsManagementServices(context);
+
+                await ListService.CreateList(testLists6);
+
+                var List2Answer = await ListService.GetOneList(testLists6.ID);
+
+                Assert.Equal(testLists6, List2Answer);
+            }
+        }
+
+        //getalllists
+        [Fact]
+        public async void TestGetAllLists()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("GetAllLists").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+
+                Lists testLists7 = new Lists();
+                testLists7.ID = 1;
+                testLists7.UserID = "aUserName";
+                testLists7.ListName = "ToDoList";
+
+                Lists testLists8 = new Lists();
+                testLists8.ID = 2;
+                testLists8.UserID = "aDiffUserName";
+                testLists8.ListName = "DiffToDoList";
+
+                ListsManagementServices ListService = new ListsManagementServices(context);
+
+                await ListService.CreateList(testLists7);
+                await ListService.CreateList(testLists8);
+
+                var List3Answer = await ListService.GetAllLists();
+
+                Assert.Equal(2, List3Answer.Count);
+            }
+        }
+
+        //updatelists
+        [Fact]
+        public async void TestUpdateList()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("UpdateList").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+
+                Lists testLists9 = new Lists();
+                testLists9.ID = 1;
+                testLists9.UserID = "aUserName";
+                testLists9.ListName = "ToDoList";
+                testLists9.ListName = "aDiffToDoList";
+
+                ListsManagementServices ListService = new ListsManagementServices(context);
+
+                await ListService.CreateList(testLists9);
+
+                await ListService.UpdateList(testLists9);
+                var expected1 = context.ListsTable.FirstOrDefault(c => c.ID == testLists9.ID);
+
+                Assert.Equal(testLists9, expected1);
+            }
+        }
+
+        //deletelists
+        [Fact]
+        public async void TestDeleteList()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("DeleteList").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+
+                Lists testLists10 = new Lists();
+                testLists10.ID = 1;
+                testLists10.UserID = "aUserName";
+                testLists10.ListName = "ToDoList";
+
+                ListsManagementServices ListService = new ListsManagementServices(context);
+
+                await ListService.CreateList(testLists10);
+
+                await ListService.DeleteList(testLists10.ID);
+                var expected2 = context.ListsTable.FirstOrDefault(c => c.ID == testLists10.ID);
+
+                Assert.Null(expected2);
+            }
         }
 
         //task=====================================================
