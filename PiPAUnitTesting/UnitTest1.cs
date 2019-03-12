@@ -139,11 +139,11 @@ namespace PiPAUnitTesting
                 testLists9.ID = 1;
                 testLists9.UserID = "aUserName";
                 testLists9.ListName = "ToDoList";
-                testLists9.ListName = "aDiffToDoList";
 
                 ListsManagementServices ListService = new ListsManagementServices(context);
 
                 await ListService.CreateList(testLists9);
+                testLists9.ListName = "aDiffToDoList";
 
                 await ListService.UpdateList(testLists9);
                 var expected1 = context.ListsTable.FirstOrDefault(c => c.ID == testLists9.ID);
@@ -320,7 +320,178 @@ namespace PiPAUnitTesting
             Assert.True(testTask14.IsComplete);
         }
 
+        //create task
+        [Fact]
+        public async void TestCreateTask()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("CreateTask").Options;
 
+            using (PADbcontext context = new PADbcontext(options))
+            {
+                DateTime testTime10 = new DateTime(2019, 3, 1, 11, 0, 0);
+                DateTime testTime11 = new DateTime(2019, 3, 2, 11, 0, 0);
+                DateTime testTime12 = new DateTime(2019, 3, 3, 11, 0, 0);
+                Tasks testTask15 = new Tasks();
+                testTask15.ID = 1;
+                testTask15.ListID = 1;
+                testTask15.TaskName = "aTask";
+                testTask15.Description = "aDescription";
+                testTask15.DateCreated = testTime10;
+                testTask15.PlannedDateComplete = testTime11;
+                testTask15.CompletedDate = testTime12;
+                testTask15.IsComplete = false;
+
+                TasksManagementServices TaskService = new TasksManagementServices(context);
+
+                await TaskService.CreateTask(testTask15);
+
+                var Task1Answer = context.TasksTable.FirstOrDefault(c => c.ID == testTask15.ID);
+
+                Assert.Equal(testTask15, Task1Answer);
+            }
+        }
+
+        //getonetask
+        [Fact]
+        public async void TestGetOneTask()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("GetOneTask").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+                DateTime testTime13 = new DateTime(2019, 3, 4, 11, 0, 0);
+                DateTime testTime14 = new DateTime(2019, 3, 5, 11, 0, 0);
+                DateTime testTime15 = new DateTime(2019, 3, 6, 11, 0, 0);
+                Tasks testTask16 = new Tasks();
+                testTask16.ID = 1;
+                testTask16.ListID = 1;
+                testTask16.TaskName = "aTask";
+                testTask16.Description = "aDescription";
+                testTask16.DateCreated = testTime13;
+                testTask16.PlannedDateComplete = testTime14;
+                testTask16.CompletedDate = testTime15;
+                testTask16.IsComplete = false;
+
+                TasksManagementServices TaskService = new TasksManagementServices(context);
+
+                await TaskService.CreateTask(testTask16);
+
+                var Task2Answer = await TaskService.GetOneTask(testTask16.ListID);
+
+                Assert.Equal(testTask16, Task2Answer);
+            }
+        }
+
+        //get all tasks
+        [Fact]
+        public async void TestGetAllTasks()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("GetAllTask").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+                DateTime testTime16 = new DateTime(2019, 3, 4, 11, 0, 0);
+                DateTime testTime17 = new DateTime(2019, 3, 5, 11, 0, 0);
+                DateTime testTime18 = new DateTime(2019, 3, 6, 11, 0, 0);
+                Tasks testTask17 = new Tasks();
+                testTask17.ID = 1;
+                testTask17.ListID = 1;
+                testTask17.TaskName = "aTask";
+                testTask17.Description = "aDescription";
+                testTask17.DateCreated = testTime16;
+                testTask17.PlannedDateComplete = testTime17;
+                testTask17.CompletedDate = testTime18;
+                testTask17.IsComplete = false;
+
+                DateTime testTime19 = new DateTime(2019, 3, 4, 11, 0, 0);
+                DateTime testTime20 = new DateTime(2019, 3, 5, 11, 0, 0);
+                DateTime testTime21 = new DateTime(2019, 3, 6, 11, 0, 0);
+                Tasks testTask18 = new Tasks();
+                testTask18.ID = 2;
+                testTask18.ListID = 1;
+                testTask18.TaskName = "aDiffTask";
+                testTask18.Description = "aDiffDescription";
+                testTask18.DateCreated = testTime19;
+                testTask18.PlannedDateComplete = testTime20;
+                testTask18.CompletedDate = testTime21;
+                testTask18.IsComplete = false;
+
+
+                TasksManagementServices TaskService = new TasksManagementServices(context);
+
+                await TaskService.CreateTask(testTask17);
+                await TaskService.CreateTask(testTask18);
+
+                var Task3Answer = await TaskService.GetAllTasks();
+
+                Assert.Equal(2, Task3Answer.Count);
+            }
+        }
+
+        //update task
+        [Fact]
+        public async void TestUpdateTask()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("UpdateTask").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+                DateTime testTime22 = new DateTime(2019, 3, 4, 11, 0, 0);
+                DateTime testTime23 = new DateTime(2019, 3, 5, 11, 0, 0);
+                DateTime testTime24 = new DateTime(2019, 3, 6, 11, 0, 0);
+                Tasks testTask19 = new Tasks();
+                testTask19.ID = 1;
+                testTask19.ListID = 1;
+                testTask19.TaskName = "aTask";
+                testTask19.Description = "aDescription";
+                testTask19.DateCreated = testTime22;
+                testTask19.PlannedDateComplete = testTime23;
+                testTask19.CompletedDate = testTime24;
+                testTask19.IsComplete = false;
+
+                TasksManagementServices TaskService = new TasksManagementServices(context);
+
+                await TaskService.CreateTask(testTask19);
+                testTask19.IsComplete = true;
+
+                await TaskService.UpdateTask(testTask19);
+                var expected3 = context.TasksTable.FirstOrDefault(c => c.ID == testTask19.ID);
+
+                Assert.Equal(testTask19, expected3);
+            }
+        }
+
+        //delete task
+        [Fact]
+        public async void TestDeleteTask()
+        {
+            DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("DeleteTask").Options;
+
+            using (PADbcontext context = new PADbcontext(options))
+            {
+                DateTime testTime25 = new DateTime(2019, 3, 4, 11, 0, 0);
+                DateTime testTime26 = new DateTime(2019, 3, 5, 11, 0, 0);
+                DateTime testTime27 = new DateTime(2019, 3, 6, 11, 0, 0);
+                Tasks testTask20 = new Tasks();
+                testTask20.ID = 1;
+                testTask20.ListID = 1;
+                testTask20.TaskName = "aTask";
+                testTask20.Description = "aDescription";
+                testTask20.DateCreated = testTime25;
+                testTask20.PlannedDateComplete = testTime26;
+                testTask20.CompletedDate = testTime27;
+                testTask20.IsComplete = false;
+
+                TasksManagementServices TaskService = new TasksManagementServices(context);
+
+                await TaskService.CreateTask(testTask20);
+
+                await TaskService.DeleteTask(testTask20.ID);
+                var expected4 = context.TasksTable.FirstOrDefault(c => c.ID == testTask20.ID);
+
+                Assert.Null(expected4);
+            }
+        }
 
     }
 }
