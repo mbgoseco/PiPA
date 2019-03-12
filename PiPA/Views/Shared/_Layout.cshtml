@@ -52,11 +52,21 @@
         </nav>
     </div>
 
-
-    <section class="section">
-        <div class="container">
+    @if (ViewBag.Title == "PiPA | Home")
+     {
+        <div>
             @RenderBody()
         </div>
-    </section>
+    }
+    else
+    {
+        <section class="section">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </section>
+    }
+
+
 </body>
 </html>
