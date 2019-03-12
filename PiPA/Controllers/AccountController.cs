@@ -50,6 +50,7 @@ namespace PiPA.Controllers
                     Birthday = rvm.Birthday,
                 };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
+
                 return RedirectToAction("Index", "Tasks");
             }
             return View(rvm);
