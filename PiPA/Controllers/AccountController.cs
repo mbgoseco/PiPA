@@ -35,7 +35,7 @@ namespace PiPA.Controllers
         /// <param name="rvm"></param>
         /// <returns>RegisterViewModel</returns>
         [HttpPost]
-        public IActionResult Register(RegisterViewModel rvm)
+        public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
 
             if (ModelState.IsValid)
@@ -49,6 +49,7 @@ namespace PiPA.Controllers
                     LastName = rvm.LastName,
                     Birthday = rvm.Birthday,
                 };
+                var result = await _userManager.CreateAsync(user, rvm.Password);
                 return RedirectToAction("Index", "Tasks");
             }
             return View(rvm);
