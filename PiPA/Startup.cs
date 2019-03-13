@@ -36,7 +36,6 @@ namespace PiPA
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 
             services.AddDbContext<PADbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:PADefaultConnection"]));
-
             services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ADefaultConnection"]));
 
             services.AddScoped<ILists, ListsManagementServices>();
@@ -46,19 +45,19 @@ namespace PiPA
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseAuthentication();
-            app.UseStaticFiles();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
             app.Run(async (context) =>
             {

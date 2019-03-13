@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using PiPA.Models.Interfaces;
+
 
 namespace PiPA.Controllers
 {
@@ -25,6 +27,7 @@ namespace PiPA.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -50,7 +53,10 @@ namespace PiPA.Controllers
                     Birthday = rvm.Birthday,
                 };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
-
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
                 return RedirectToAction("Index", "Tasks");
             }
             return View(rvm);
@@ -69,9 +75,17 @@ namespace PiPA.Controllers
         /// <param name="lvm"></param>
         /// <returns>View</returns>
         [HttpPost]
-        public IActionResult Login(LoginViewModel lvm)
+        public async Task<IActionResult> Login(LoginViewModel lvm)
         {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
 
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Tasks");
+                }
+            }
             ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             return View(lvm);
         }
@@ -82,8 +96,9 @@ namespace PiPA.Controllers
         /// <returns>View</returns>
         [HttpGet]
         [Authorize]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }
