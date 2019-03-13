@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using PiPA.Models
+
+@inject SignInManager<ApplicationUser> signInManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -53,7 +58,7 @@
     </div>
 
     @if (ViewBag.Title == "PiPA | Home")
-     {
+    {
         <div>
             @RenderBody()
         </div>
