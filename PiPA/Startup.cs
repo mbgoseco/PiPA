@@ -36,7 +36,6 @@ namespace PiPA
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbcontext>().AddDefaultTokenProviders();
 
             services.AddDbContext<PADbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:PADefaultConnection"]));
-
             services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ADefaultConnection"]));
 
             services.AddScoped<ILists, ListsManagementServices>();
