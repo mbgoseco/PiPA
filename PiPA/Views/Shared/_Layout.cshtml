@@ -1,11 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using PiPA.Models
+
+@inject SignInManager<ApplicationUser> signInManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>@ViewBag.Title</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" integrity="sha256-8B1OaG0zT7uYA572S2xOxWACq9NXYPQ+U5kHPV1bJN4=" crossorigin="anonymous" />
     <link href="~/css/StyleSheet.scss" rel="stylesheet" />
+
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
@@ -26,25 +34,37 @@
 
             <div id="desktopNavbar" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" asp-page="/Home">Home</a>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="#">About</a>
+                    @if (!signInManager.IsSignedIn(User))
+                    {
+                        <a class="navbar-item" asp-page="/Home">Home</a>
 
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="#">What is PiPA?</a>
-                            <a class="navbar-item" href="#">Procurement</a>
-                            <a class="navbar-item" href="#">Setup</a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="#">About</a>
+
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="#">What is PiPA?</a>
+                                <a class="navbar-item" href="#">Procurement</a>
+                                <a class="navbar-item" href="#">Setup</a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
 
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-danger" href="~/Account/Register">
-                                Sign Up
-                            </a>
-                            <a class="button is-info" href="~/Account/Login">Log In</a>
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <a class="button is-danger" href="~/Account/Logout">Log Out</a>
+                            }
+                            else
+                            {
+                                <a class="button is-warning" href="~/Account/Register">
+                                    Sign Up
+                                </a>
+                                <a class="button is-info" href="~/Account/Login">Log In</a>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -53,7 +73,7 @@
     </div>
 
     @if (ViewBag.Title == "PiPA | Home")
-     {
+    {
         <div>
             @RenderBody()
         </div>
