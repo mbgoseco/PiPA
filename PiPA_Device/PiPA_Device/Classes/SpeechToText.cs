@@ -1,14 +1,15 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.CognitiveServices.Speech.Audio;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
 
+
 namespace PiPA_Device.Classes
 {
-    public class SpeechToText
+    public class SpeechToText : AddToDb
     {
         private readonly string _subKey;
         private readonly string _regionUri;
@@ -56,20 +57,20 @@ namespace PiPA_Device.Classes
                         TaskReady = false;
                         Command = "name task";
                         Speech = result.Text;
-
-                        //
-                        // SQL query goes here (or in Main -OR- in new Class for SQL action)
-                        //
+                        
+                        Command = await AddAsync(Speech);
                     }
                     else
                     {
                         Command = "unclear";
+                        TaskReady = false;
                     }
                 }
                 else if (result.Reason == ResultReason.NoMatch)
                 {
                     Console.WriteLine($"NOMATCH: Speech could not be recognized.");
                     Command = "";
+                    TaskReady = false;
                 }
                 else if (result.Reason == ResultReason.Canceled)
                 {
@@ -107,7 +108,7 @@ namespace PiPA_Device.Classes
                     {
                         Console.WriteLine($"Final result: Text: {result.Text}.");
                         Speech = result.Text;
-                        if (result.Text.ToLower().Contains("hello piper") || result.Text.ToLower().Contains("hello papa"))
+                        if (result.Text.ToLower().Contains("hello piper") || result.Text.ToLower().Contains("hello papa") || result.Text.ToLower().Contains("hello paper"))
                         {
                             Console.WriteLine("wakeup keyword hit!");
                             Command = "wake";

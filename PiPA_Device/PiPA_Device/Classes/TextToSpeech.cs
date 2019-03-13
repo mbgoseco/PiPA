@@ -33,23 +33,28 @@ namespace PiPA_Device.Classes
             {
                 case "wake":
                     body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
-              <voice name='Microsoft Server Speech Text to Speech Voice (en-AU, Catherine)'>" +
+              <voice name='Microsoft Server Speech Text to Speech Voice (en-US, Jessa24kRUS)'>" + "<break time=\"300ms\" />" +
                   "Pie pa here. How can I help?" + "</voice></speak>";
                     break;
                 case "add task":
                     body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
-              <voice name='Microsoft Server Speech Text to Speech Voice (en-AU, Catherine)'>" +
+              <voice name='Microsoft Server Speech Text to Speech Voice (en-US, Jessa24kRUS)'>" + "<break time=\"300ms\" />" +
                   "Okay. What would you like to call this task?" + "</voice></speak>";
                     break;
                 case "name task":
                     body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
-              <voice name='Microsoft Server Speech Text to Speech Voice (en-AU, Catherine)'>" +
+              <voice name='Microsoft Server Speech Text to Speech Voice (en-US, Jessa24kRUS)'>" + "<break time=\"300ms\" />" +
                   $"Your task named, {Text}, has been added to your to do list." + "</voice></speak>";
                     break;
                 case "unclear":
                     body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
-              <voice name='Microsoft Server Speech Text to Speech Voice (en-AU, Catherine)'>" +
+              <voice name='Microsoft Server Speech Text to Speech Voice (en-US, Jessa24kRUS)'>" + "<break time=\"300ms\" />" +
                   "Sorry, I don't understand that command." + "</voice></speak>";
+                    break;
+                case "Error":
+                    body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+              <voice name='Microsoft Server Speech Text to Speech Voice (en-US, Jessa24kRUS)'>" + "<break time=\"300ms\" />" +
+                  "Sorry, there was a problem adding that to your list." + "</voice></speak>";
                     break;
                 default:
                     break;

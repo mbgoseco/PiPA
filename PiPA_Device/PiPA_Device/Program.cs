@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PiPA_Device.Classes;
-using System.Data.SqlClient;
 using System.Threading;
 
 namespace PiPA_Device
@@ -17,10 +16,9 @@ namespace PiPA_Device
             string tokenUri = "https://westus2.api.cognitive.microsoft.com/sts/v1.0/issueToken";
             string regionUri = "westus2";
             string ttsUri = "https://westus2.tts.speech.microsoft.com/cognitiveservices/v1";
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello! This is PiPA!");
             Authentication authenticator = new Authentication(subKey);
             string token = authenticator.GetAccessToken();
-            Console.WriteLine($"{token}");
 
             SpeechToText speechToText = new SpeechToText(subKey, regionUri);
 
@@ -44,6 +42,12 @@ namespace PiPA_Device
                         textToSpeech.Text = speechToText.Speech;
                         textToSpeech.Command = speechToText.Command;
                         textToSpeech.CreateSpeech().Wait();
+
+                        if(speechToText.Command == "Error")
+                        {
+                            textToSpeech.Command = speechToText.Command;
+                            textToSpeech.CreateSpeech().Wait();
+                        }
                     }
                 }
                 else if (speechToText.Command == "unclear")
