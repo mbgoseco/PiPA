@@ -46,11 +46,18 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-warning" href="~/Account/Register">
-                                Sign Up
-                            </a>
-                            <a class="button is-info" href="~/Account/Login">Log In</a>
-                            <a class="button is-danger" href="~/Account/Logout">Log Out</a>
+                            @if (signInManager.IsSignedIn(User))
+                            {
+                                <a class="button is-danger" href="~/Account/Logout">Log Out</a>
+                            }
+                            else
+                            {
+                                <a class="button is-warning" href="~/Account/Register">
+                                    Sign Up
+                                </a>
+                                <a class="button is-info" href="~/Account/Login">Log In</a>
+                            }
+
                         </div>
                     </div>
                 </div>
