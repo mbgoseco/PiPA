@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PiPA.Data;
 
 namespace PiPA.Migrations.PADbcontextMigrations
 {
     [DbContext(typeof(PADbcontext))]
-    partial class PADbcontextModelSnapshot : ModelSnapshot
+    [Migration("20190313183327_031319rebuild2")]
+    partial class _031319rebuild2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

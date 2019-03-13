@@ -2,25 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PiPA.Models;
 using PiPA.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PiPA.Controllers
 {
+    //[Authorize]
     public class TasksController : Controller
     {
         private readonly ITasks _tasks;
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _sign;
 
         /// <summary>
         /// connects to task dependency injection
         /// </summary>
         /// <param name="tasks">which injection</param>
-        public TasksController(ITasks tasks)
+        public TasksController(ITasks tasks, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> sign)
         {
+      
+            _userManager = userManager;
             _tasks = tasks;
+            _sign = sign;
         }
 
         /// <summary>
@@ -29,8 +43,31 @@ namespace PiPA.Controllers
         /// <returns>the task home index</returns>
         public async Task<IActionResult> Index()
         {
-            //might need to go back to get task by user
-            return View(await _tasks.GetAllTasks());
+            string userEmail = User.Identity.Name;
+            var user = await _userManager.GetUserAsync(User);
+            //var user = await _userManager.FindByEmailAsync(userEmail);
+            if (_sign.IsSignedIn(User))
+            {
+                //might need to go back to get task by user
+                return View(await _tasks.GetAllTasks());
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            Console.WriteLine("I'm not signed in");
+            return View();
         }
 
         /// <summary>

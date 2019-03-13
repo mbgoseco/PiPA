@@ -50,6 +50,11 @@ namespace PiPA.Controllers
                     Birthday = rvm.Birthday,
                 };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
+
 
                 return RedirectToAction("Index", "Tasks");
             }
@@ -77,7 +82,8 @@ namespace PiPA.Controllers
 
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(lvm.Email);
+                    string user = User.Identity.Name;
+                    //var user = await _userManager.FindByEmailAsync(lvm.Email);
                     //var roles = await _userManager.GetRolesAsync(user);
                     return RedirectToAction("Index", "Tasks");
                 }
@@ -91,7 +97,7 @@ namespace PiPA.Controllers
         /// </summary>
         /// <returns>View</returns>
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

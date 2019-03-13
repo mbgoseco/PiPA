@@ -39,6 +39,10 @@ namespace PiPA
 
             services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ADefaultConnection"]));
 
+            services.AddAuthorization(options =>
+            {
+
+            });
             services.AddScoped<ILists, ListsManagementServices>();
             services.AddScoped<ITasks, TasksManagementServices>();
         }
@@ -54,10 +58,12 @@ namespace PiPA
             });
             app.UseAuthentication();
             app.UseStaticFiles();
+            app.UseHttpsRedirection();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
 
             app.Run(async (context) =>
