@@ -15,6 +15,15 @@ namespace PiPA.Controllers
 {
     public class AccountController : Controller
     {
+        private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
+
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -26,8 +35,9 @@ namespace PiPA.Controllers
         /// <param name="rvm"></param>
         /// <returns>RegisterViewModel</returns>
         [HttpPost]
-        public IActionResult Register(RegisterViewModel rvm)
+        public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
+
             if (ModelState.IsValid)
             {
                 //Create new application user
@@ -39,9 +49,13 @@ namespace PiPA.Controllers
                     LastName = rvm.LastName,
                     Birthday = rvm.Birthday,
                 };
+                var result = await _userManager.CreateAsync(user, rvm.Password);
+
+                return RedirectToAction("Index", "Tasks");
             }
             return View(rvm);
         }
+
         /// <summary>
         /// Gets login view and returns it back to the user
         /// </summary>

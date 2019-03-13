@@ -22,12 +22,12 @@ namespace PiPA.Models.ViewModels
         /// Gets or sets the firstName
         /// </summary>
         [Required]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Gets or sets the lastName
         /// </summary>
         [Required]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
     }
 }

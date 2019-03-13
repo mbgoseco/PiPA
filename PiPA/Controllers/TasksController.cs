@@ -13,22 +13,40 @@ namespace PiPA.Controllers
     public class TasksController : Controller
     {
         private readonly ITasks _tasks;
+
+        /// <summary>
+        /// connects to task dependency injection
+        /// </summary>
+        /// <param name="tasks">which injection</param>
         public TasksController(ITasks tasks)
         {
             _tasks = tasks;
         }
 
+        /// <summary>
+        /// gets the view to show all the tasks
+        /// </summary>
+        /// <returns>the task home index</returns>
         public async Task<IActionResult> Index()
         {
             //might need to go back to get task by user
             return View(await _tasks.GetAllTasks());
         }
 
+        /// <summary>
+        /// gets the view to create a task
+        /// </summary>
+        /// <returns>the task create page</returns>
         public IActionResult Create()
         {
             return View();
         }
 
+        /// <summary>
+        /// Does the action to create a new task
+        /// </summary>
+        /// <param name="tasks">information from the form filled out on the site</param>
+        /// <returns>the task home page</returns>
         [HttpPost]
         public async Task<IActionResult> Create([Bind("ID, TaskName, Description, DateCreated, PlannedDateComplete")] Tasks tasks)
         {
@@ -44,6 +62,11 @@ namespace PiPA.Controllers
             return View(tasks);
         }
 
+        /// <summary>
+        /// gets the details of a task page
+        /// </summary>
+        /// <param name="id">which task</param>
+        /// <returns>the specific task details page</returns>
         public async Task<IActionResult> Details(int id)
         {
             var oneTask = await _tasks.GetOneTask(id);
@@ -51,6 +74,11 @@ namespace PiPA.Controllers
             return View(oneTask);
         }
 
+        /// <summary>
+        /// gets the page with the form to update a task
+        /// </summary>
+        /// <param name="id">which task</param>
+        /// <returns>the edit task page</returns>
         public async Task<IActionResult> Edit(int id)
         {
             var oneTask = await _tasks.GetOneTask(id);
@@ -61,6 +89,12 @@ namespace PiPA.Controllers
             return View(oneTask);
         }
 
+        /// <summary>
+        /// does the action t edit a task
+        /// </summary>
+        /// <param name="id">which task</param>
+        /// <param name="tasks">the new revised task</param>
+        /// <returns>to the task home page when done</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID, TaskName, Description, PlannedDateComplete, CompletedDate, IsComplete")] Tasks tasks)
@@ -69,6 +103,11 @@ namespace PiPA.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// gets the delete page
+        /// </summary>
+        /// <param name="id">which task one wants to delete</param>
+        /// <returns>the task home page</returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -78,14 +117,6 @@ namespace PiPA.Controllers
             }
             var tasks = await _tasks.GetOneTask((int)id);
             await _tasks.DeleteTask((int)id);
-            return RedirectToAction(nameof(Index));
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-
-            await _tasks.DeleteTask(id);
             return RedirectToAction(nameof(Index));
         }
     }

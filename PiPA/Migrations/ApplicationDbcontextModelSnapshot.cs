@@ -138,6 +138,8 @@ namespace PiPA.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<DateTime>("Birthday");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 

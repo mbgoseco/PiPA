@@ -10,8 +10,8 @@ using PiPA.Data;
 namespace PiPA.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20190311205101_initial1")]
-    partial class initial1
+    [Migration("20190312234027_march")]
+    partial class march
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,6 +139,8 @@ namespace PiPA.Migrations
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("Address");
+
+                    b.Property<DateTime>("Birthday");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
