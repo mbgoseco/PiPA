@@ -43,7 +43,6 @@ namespace PiPA.Controllers
         /// <returns>the task home index</returns>
         public async Task<IActionResult> Index()
         {
-            string userEmail = User.Identity.Name;
             var user = await _userManager.GetUserAsync(User);
             //var user = await _userManager.FindByEmailAsync(userEmail);
             if (_sign.IsSignedIn(User))
@@ -51,22 +50,23 @@ namespace PiPA.Controllers
                 //might need to go back to get task by user
                 return View(await _tasks.GetAllTasks());
             }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
-            Console.WriteLine("I'm not signed in");
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+            //Console.WriteLine("I'm not signed in");
+
             return View();
         }
 

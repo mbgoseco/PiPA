@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PiPA.Migrations.PADbcontextMigrations
 {
-    public partial class marchh : Migration
+    public partial class _031319rebild5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

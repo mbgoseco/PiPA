@@ -10,8 +10,8 @@ using PiPA.Data;
 namespace PiPA.Migrations.PADbcontextMigrations
 {
     [DbContext(typeof(PADbcontext))]
-    [Migration("20190313183327_031319rebuild2")]
-    partial class _031319rebuild2
+    [Migration("20190313193932_031319rebild5")]
+    partial class _031319rebild5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
