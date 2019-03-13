@@ -39,10 +39,6 @@ namespace PiPA
 
             services.AddDbContext<ApplicationDbcontext>(options => options.UseSqlServer(Configuration["ConnectionStrings:ADefaultConnection"]));
 
-            //services.AddAuthorization(options =>
-            //{
-
-            //});
             services.AddScoped<ILists, ListsManagementServices>();
             services.AddScoped<ITasks, TasksManagementServices>();
         }
@@ -54,7 +50,6 @@ namespace PiPA
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
             }
             app.UseStaticFiles();
             app.UseMvc(routes =>
@@ -63,7 +58,6 @@ namespace PiPA
                 name: "default",
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
-            //app.UseHttpsRedirection();
 
 
             app.Run(async (context) =>

@@ -55,17 +55,8 @@ namespace PiPA.Controllers
                 var result = await _userManager.CreateAsync(user, rvm.Password);
                 if (result.Succeeded)
                 {
-                    //Claim fullNameClaim = new Claim("FullName", $"{user.FirstName} {user.LastName}");
-                    //Claim emailClaim = new Claim(ClaimTypes.Email, user.Email, ClaimValueTypes.Email);
-
-                    //List<Claim> claims = new List<Claim> { fullNameClaim, emailClaim };
-
-                    //await _userManager.AddClaimsAsync(user, claims);
                     await _signInManager.SignInAsync(user, isPersistent: false);
-
                 }
-
-
                 return RedirectToAction("Index", "Tasks");
             }
             return View(rvm);
@@ -92,11 +83,6 @@ namespace PiPA.Controllers
 
                 if (result.Succeeded)
                 {
-                    
-
-                    string user = User.Identity.Name;
-                    //var user = await _userManager.FindByEmailAsync(lvm.Email);
-                    //var roles = await _userManager.GetRolesAsync(user);
                     return RedirectToAction("Index", "Tasks");
                 }
             }
@@ -109,7 +95,7 @@ namespace PiPA.Controllers
         /// </summary>
         /// <returns>View</returns>
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
