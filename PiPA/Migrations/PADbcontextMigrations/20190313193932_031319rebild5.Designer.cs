@@ -10,14 +10,14 @@ using PiPA.Data;
 namespace PiPA.Migrations.PADbcontextMigrations
 {
     [DbContext(typeof(PADbcontext))]
-    [Migration("20190312234047_marchh")]
-    partial class marchh
+    [Migration("20190313193932_031319rebild5")]
+    partial class _031319rebild5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
