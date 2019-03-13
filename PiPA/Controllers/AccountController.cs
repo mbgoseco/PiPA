@@ -69,9 +69,19 @@ namespace PiPA.Controllers
         /// <param name="lvm"></param>
         /// <returns>View</returns>
         [HttpPost]
-        public IActionResult Login(LoginViewModel lvm)
+        public async Task<IActionResult> Login(LoginViewModel lvm)
         {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
 
+                if (result.Succeeded)
+                {
+                    var user = await _userManager.FindByEmailAsync(lvm.Email);
+                    //var roles = await _userManager.GetRolesAsync(user);
+                    return RedirectToAction("Index", "Tasks");
+                }
+            }
             ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             return View(lvm);
         }
@@ -81,9 +91,10 @@ namespace PiPA.Controllers
         /// </summary>
         /// <returns>View</returns>
         [HttpGet]
-        [Authorize]
-        public IActionResult Logout()
+        //[Authorize]
+        public async Task<IActionResult> Logout()
         {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
     }
