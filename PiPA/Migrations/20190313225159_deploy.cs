@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace PiPA.Migrations.PADbcontextMigrations
+namespace PiPA.Migrations
 {
-    public partial class _031319rebild5 : Migration
+    public partial class deploy : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PiPA.Data;
 
-namespace PiPA.Migrations.PADbcontextMigrations
+namespace PiPA.Migrations
 {
     [DbContext(typeof(PADbcontext))]
-    [Migration("20190313193932_031319rebild5")]
-    partial class _031319rebild5
+    [Migration("20190313225159_deploy")]
+    partial class deploy
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
