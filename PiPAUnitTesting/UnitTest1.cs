@@ -651,5 +651,50 @@ namespace PiPAUnitTesting
             Assert.Equal("aBetterPassword!1", testRVM12.ConfirmPassword);
         }
 
+        //application user====================================
+        //getter firstname
+        [Fact]
+        public void TestGetAppUserFirstName()
+        {
+            ApplicationUser testUser1 = new ApplicationUser();
+            testUser1.FirstName = "aFirstName";
+            Assert.Equal("aFirstName", testUser1.FirstName);
+        }
+
+        //setter lastname
+        [Fact]
+        public void TestSetAppUserFirstName()
+        {
+            ApplicationUser testUser2 = new ApplicationUser();
+            testUser2.FirstName = "aFirstName";
+            testUser2.FirstName = "NewFirstName";
+            Assert.Equal("NewFirstName", testUser2.FirstName);
+        }
+
+        //getter lastname
+        [Fact]
+        public void TestGetAppUserLastName()
+        {
+            ApplicationUser testUser3 = new ApplicationUser();
+            testUser3.LastName = "aLastName";
+            Assert.Equal("aLastName", testUser3.FirstName);
+        }
+        //setter lastename
+        [Fact]
+        public void TestSetAppUserLastName()
+        {
+            ApplicationUser testUser4 = new ApplicationUser();
+            testUser4.LastName = "aLastName";
+            testUser4.LastName = "NewLastName";
+            Assert.Equal("aLastName", testUser4.FirstName);
+        }
+
+        //getter address
+
+        //setter address
+
+        //getter birthday
+
+        //setter birthday
     }
 }
