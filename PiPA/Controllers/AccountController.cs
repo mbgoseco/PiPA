@@ -53,12 +53,13 @@ namespace PiPA.Controllers
                     FirstName = rvm.FirstName,
                     LastName = rvm.LastName,
                     Birthday = rvm.Birthday,
+                    LoggedIn = true
                 };
                 var result = await _userManager.CreateAsync(user, rvm.Password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    //create list if they successfully log in
+                    //create list if they successfully register and log in
                     Lists userList = new Lists(); 
                     userList.UserID = user.Email;
                     userList.ListName = "To Do";
@@ -86,10 +87,13 @@ namespace PiPA.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var result = await _signInManager.PasswordSignInAsync(lvm.Email, lvm.Password, false, false);
 
                 if (result.Succeeded)
                 {
+                    var currentUser = _userManager.Users.First(u => u.UserName == lvm.Email);
+                    currentUser.LoggedIn = true;
                     return RedirectToAction("Index", "Tasks");
                 }
             }
@@ -105,6 +109,8 @@ namespace PiPA.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            currentUser.LoggedIn = false;
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

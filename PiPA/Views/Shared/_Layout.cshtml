@@ -21,7 +21,7 @@
     <div class="container">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" asp-page="/Home">
+                <a class="navbar-item" asp-action="Index" asp-controller="Home">
                     <img src="~/images/PiPA-logo.svg" alt="Logo" width="112" asp-append-version="true" />
                 </a>
 
@@ -36,7 +36,7 @@
                 <div class="navbar-start">
                     @if (!signInManager.IsSignedIn(User))
                     {
-                        <a class="navbar-item" asp-page="/Home">Home</a>
+                        <a class="navbar-item" asp-action="Index" asp-controller="Home">Home</a>
 
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link" href="#">About</a>
