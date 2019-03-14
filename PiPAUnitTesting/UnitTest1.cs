@@ -90,7 +90,7 @@ namespace PiPAUnitTesting
 
                 await ListService.CreateList(testLists6);
 
-                var List2Answer = await ListService.GetOneList(testLists6.ID);
+                var List2Answer = await ListService.GetOneList(testLists6.UserID);
 
                 Assert.Equal(testLists6, List2Answer);
             }

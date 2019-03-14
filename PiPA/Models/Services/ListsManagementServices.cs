@@ -58,12 +58,12 @@ namespace PiPA.Models.Services
         /// <summary>
         /// gets one list from the table
         /// </summary>
-        /// <param name="id">the list id you want</param>
-        /// <returns>the list</returns>
-        public async Task<Lists> GetOneList(int id)
+        /// <param name="id">the list of the userid you want</param>
+        /// <returns>the list of that user</returns>
+        public async Task<int> GetOneListId(string id)
         {
-            Lists lists = await _context.ListsTable.FirstOrDefaultAsync(t => t.ID == id);
-            return lists;
+            Lists lists = await _context.ListsTable.FirstOrDefaultAsync(t => t.UserID == id);
+            return lists.ID;
         }
 
         /// <summary>

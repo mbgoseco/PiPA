@@ -19,11 +19,13 @@ namespace PiPA.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private ILists _lists;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILists lists)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _lists = lists;
         }
 
         [HttpGet]
@@ -56,6 +58,11 @@ namespace PiPA.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    //create list if they successfully log in
+                    Lists userList = new Lists(); 
+                    userList.UserID = user.Email;
+                    userList.ListName = "To Do";
+                    await _lists.CreateList(userList);
                 }
                 return RedirectToAction("Index", "Tasks");
             }
