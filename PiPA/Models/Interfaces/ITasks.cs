@@ -9,7 +9,7 @@ namespace PiPA.Models.Interfaces
     {
         Task CreateTask(Tasks tasks);
         Task<Tasks> GetOneTask(int id);
-        Task<List<Tasks>> GetAllTasks();
+        Task<List<Tasks>> GetAllTasksForAList(int id);
         Task UpdateTask(Tasks tasks);
         Task DeleteTask(int id);
     }
