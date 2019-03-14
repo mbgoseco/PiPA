@@ -588,7 +588,7 @@ namespace PiPAUnitTesting
         {
             RegisterViewModel testRVM6 = new RegisterViewModel();
             DateTime tempDate2 = new DateTime(2019, 3, 14, 11, 0, 0);
-            DateTime tempDate3 = new DateTime(2019, 3, 14, 11, 0, 0);
+            DateTime tempDate3 = new DateTime(2019, 4, 14, 11, 0, 0);
             testRVM6.Birthday = tempDate2;
             testRVM6.Birthday = tempDate3;
             Assert.Equal(tempDate3, testRVM6.Birthday);
@@ -677,7 +677,7 @@ namespace PiPAUnitTesting
         {
             ApplicationUser testUser3 = new ApplicationUser();
             testUser3.LastName = "aLastName";
-            Assert.Equal("aLastName", testUser3.FirstName);
+            Assert.Equal("aLastName", testUser3.LastName);
         }
         //setter lastename
         [Fact]
@@ -686,15 +686,48 @@ namespace PiPAUnitTesting
             ApplicationUser testUser4 = new ApplicationUser();
             testUser4.LastName = "aLastName";
             testUser4.LastName = "NewLastName";
-            Assert.Equal("aLastName", testUser4.FirstName);
+            Assert.Equal("NewLastName", testUser4.LastName);
         }
 
         //getter address
+        [Fact]
+        public void TestGetAppUserAddress()
+        {
+            ApplicationUser testUser5 = new ApplicationUser();
+            testUser5.Address = "an address";
+            Assert.Equal("an address", testUser5.Address);
+        }
 
         //setter address
+        [Fact]
+        public void TestSetAppUserAddress()
+        {
+            ApplicationUser testUser6 = new ApplicationUser();
+            testUser6.Address = "an address";
+            testUser6.Address = "a new address";
+            Assert.Equal("a new address", testUser6.Address);
+        }
 
         //getter birthday
+        [Fact]
+        public void TestGetAppUserBirthday()
+        {
+            ApplicationUser testUser7 = new ApplicationUser();
+            DateTime tempDateA = new DateTime(2019, 3, 14, 11, 0, 0);
+            testUser7.Birthday = tempDateA;
+            Assert.Equal(tempDateA, testUser7.Birthday);
+        }
 
         //setter birthday
+        [Fact]
+        public void TestSetAppUserBirthday()
+        {
+            ApplicationUser testUser8 = new ApplicationUser();
+            DateTime tempDateB = new DateTime(2019, 3, 14, 11, 0, 0);
+            DateTime tempDateC = new DateTime(2019, 5, 14, 11, 0, 0);
+            testUser8.Birthday = tempDateB;
+            testUser8.Birthday = tempDateC;
+            Assert.Equal(tempDateC, testUser8.Birthday);
+        }
     }
 }
