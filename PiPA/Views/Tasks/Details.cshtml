@@ -3,19 +3,47 @@
 @{
     Layout = "_Layout";
 }
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-size-3">
+                Task Details
+            </h1>
+        </div>
+    </div>
+</section>
 
+<section class="pad-bottom-s">
+    <p><strong>Task Name:</strong> @Model.TaskName</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+    <p><strong>Date Created:</strong> @Model.DateCreated</p>
+    <p><strong>Planned date of Completion:</strong> @Model.PlannedDateComplete</p>
+    <p><strong>Completed Date:</strong> @Model.CompletedDate</p>
+    <p>
+        <strong>Complete?</strong>
+        @if (Model.IsComplete == true)
+        {
+            <span>Yes</span>
+        }
+        else
+        {
+            <span>No</span>
+        }
+    </p>
+</section>
 
-<h1>Task Details</h1>
-
-
-<p>Task Name: @Model.TaskName</p>
-<p>Description: @Model.Description</p>
-<p>Date Created: @Model.DateCreated</p>
-<p>Planned date of Completion: @Model.PlannedDateComplete</p>
-<p>Completed Date: @Model.CompletedDate</p>
-<p>Is completed: @Model.IsComplete</p>
-
-<a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
-<a asp-action="Delete" asp-route-id="@Model.ID">Delete</a>
-<a asp-action="Index">Back to All Tasks</a>
-
+<section>
+    <div class="buttons">
+        <div class="field is-grouped">
+            <div class="control">
+                <button asp-action="Edit" asp-route-id="@Model.ID" class="button is-link">Edit</button>
+            </div>
+            <div class="control">
+                <button asp-action="Delete" asp-route-id="@Model.ID" class="button is-danger">Delete</button>
+            </div>
+            <div class="control">
+                <a asp-action="Index" class="button">Back to All Tasks</a>
+            </div>
+        </div>
+    </div>
+</section>
