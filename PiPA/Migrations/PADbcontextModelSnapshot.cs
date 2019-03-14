@@ -32,14 +32,6 @@ namespace PiPA.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("ListsTable");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            ListName = "ToDo",
-                            UserID = "1"
-                        });
                 });
 
             modelBuilder.Entity("PiPA.Models.Tasks", b =>
@@ -58,48 +50,24 @@ namespace PiPA.Migrations
 
                     b.Property<int>("ListID");
 
+                    b.Property<int?>("ListsID");
+
                     b.Property<DateTime>("PlannedDateComplete");
 
                     b.Property<string>("TaskName");
 
                     b.HasKey("ID");
 
-                    b.ToTable("TasksTable");
+                    b.HasIndex("ListsID");
 
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            CompletedDate = new DateTime(2019, 3, 8, 10, 30, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(2019, 3, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Mow the lawn description",
-                            IsComplete = false,
-                            ListID = 1,
-                            PlannedDateComplete = new DateTime(2019, 3, 7, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskName = "Mow the Lawn"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            CompletedDate = new DateTime(2019, 3, 11, 18, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(2019, 3, 11, 7, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Do the Dishes description",
-                            IsComplete = false,
-                            ListID = 1,
-                            PlannedDateComplete = new DateTime(2019, 3, 11, 15, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskName = "Do the Dishes"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            CompletedDate = new DateTime(2019, 3, 18, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(2019, 3, 10, 7, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Go Grocery Shopping description",
-                            IsComplete = false,
-                            ListID = 1,
-                            PlannedDateComplete = new DateTime(2019, 3, 18, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskName = "Go Grocery Shopping"
-                        });
+                    b.ToTable("TasksTable");
+                });
+
+            modelBuilder.Entity("PiPA.Models.Tasks", b =>
+                {
+                    b.HasOne("PiPA.Models.Lists")
+                        .WithMany("TaskList")
+                        .HasForeignKey("ListsID");
                 });
 #pragma warning restore 612, 618
         }
