@@ -21,11 +21,11 @@
     <div class="container">
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" asp-page="/Home">
+                <a class="navbar-item" asp-page="/">
                     <img src="~/images/PiPA-logo.svg" alt="Logo" width="112" asp-append-version="true" />
                 </a>
 
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="goodToyesNavbar">
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="desktopNavbar">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -34,20 +34,26 @@
 
             <div id="desktopNavbar" class="navbar-menu">
                 <div class="navbar-start">
-                    @if (!signInManager.IsSignedIn(User))
-                    {
-                        <a class="navbar-item" asp-page="/Home">Home</a>
+                    <a href="/" class="navbar-item">
+                        <span class="icon is-large">
+                            <i class="fas fa-lg fa-home" aria-hidden="true"></i>
+                        </span>
+                        Home
+                    </a>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <span class="icon is-large">
+                                <i class="fas fa-lg fa-info" aria-hidden="true"></i>
+                            </span>
+                            About
+                        </a>
 
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link" href="#">About</a>
-
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item" href="#">What is PiPA?</a>
-                                <a class="navbar-item" href="#">Procurement</a>
-                                <a class="navbar-item" href="#">Setup</a>
-                            </div>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="#">What is PiPA?</a>
+                            <a class="navbar-item" href="#">Procurement</a>
+                            <a class="navbar-item" href="#">Setup</a>
                         </div>
-                    }
+                    </div>
                 </div>
 
                 <div class="navbar-end">
@@ -77,6 +83,13 @@
         <div>
             @RenderBody()
         </div>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    &#169; <strong>PiPA</strong> 2019
+                </p>
+            </div>
+        </footer>
     }
     else
     {
@@ -85,6 +98,13 @@
                 @RenderBody()
             </div>
         </section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    &#169; <strong>PiPA</strong> 2019
+                </p>
+            </div>
+        </footer>
     }
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="~/js/scripts.js"></script>
