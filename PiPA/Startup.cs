@@ -12,7 +12,6 @@ using PiPA.Data;
 using PiPA.Models.Services;
 using PiPA.Models.Interfaces;
 using PiPA.Models;
-using PiPA.Hubs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -41,8 +40,6 @@ namespace PiPA
 
             services.AddScoped<ILists, ListsManagementServices>();
             services.AddScoped<ITasks, TasksManagementServices>();
-
-            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,10 +58,6 @@ namespace PiPA
                 template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<DbUpdateHub>("/dbUpdateHub");
-            });
 
             app.Run(async (context) =>
             {
