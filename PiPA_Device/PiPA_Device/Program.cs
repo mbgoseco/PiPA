@@ -17,7 +17,7 @@ namespace PiPA_Device
             string regionUri = "westus2";
             string ttsUri = "https://westus2.tts.speech.microsoft.com/cognitiveservices/v1";
             Console.WriteLine("Hello! This is PiPA!");
-            Authentication authenticator = new Authentication(subKey);
+            Authentication authenticator = new Authentication(subKey, tokenUri);
             string token = authenticator.GetAccessToken();
 
             SpeechToText speechToText = new SpeechToText(subKey, regionUri);

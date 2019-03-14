@@ -10,19 +10,20 @@ namespace PiPA_Device.Classes
 
     public class Authentication
     {
-        public static readonly string FetchTokenUri =
-            "https://westus2.api.cognitive.microsoft.com/sts/v1.0/issueToken";
+        
         private string _subscriptionKey;
+        private readonly string _tokenUri;
         private string _token;
         private Timer accessTokenRenewer;
 
         //Access token expires every 10 minutes. Renew it every 9 minutes.
         private const int RefreshTokenDuration = 9;
 
-        public Authentication(string subscriptionKey)
+        public Authentication(string subscriptionKey, string tokenUri)
         {
             _subscriptionKey = subscriptionKey;
-            _token = FetchToken(FetchTokenUri, subscriptionKey).Result;
+            _tokenUri = tokenUri;
+            _token = FetchToken(_tokenUri, subscriptionKey).Result;
 
             // renew the token on set duration.
             accessTokenRenewer = new Timer(new TimerCallback(OnTokenExpiredCallback),
@@ -38,7 +39,7 @@ namespace PiPA_Device.Classes
 
         private void RenewAccessToken()
         {
-            _token = FetchToken(FetchTokenUri, _subscriptionKey).Result;
+            _token = FetchToken(_tokenUri, _subscriptionKey).Result;
             Console.WriteLine("Renewed token.");
         }
 
