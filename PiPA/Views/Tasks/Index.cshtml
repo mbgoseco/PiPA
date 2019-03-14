@@ -4,34 +4,70 @@
 @{
     Layout = "_Layout";
 }
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-size-1">
+                Your Tasks
+            </h1>
+        </div>
+    </div>
+</section>
 
-<h1>All Tasks</h1>
-
-<table>
-    <thead>
-        <tr>
-            <th>Task Name</th>
-            <th>Planned Completed Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TaskName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PlannedDateComplete)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<script src="~/lib/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/dbUpdate.js"></script>
+<section class="container hide-overflow">
+    <article class="media hide-overflow">
+        <div class="media-content hide-overflow pad-top-s">
+            <div class="content">
+                <div class="columns is-size-4 is-size-6-mobile is-mobile">
+                    <div class="column">
+                        <strong>Task</strong>
+                    </div>
+                    <div class="column">
+                        <strong>Description</strong>
+                    </div>
+                    <div class="column">
+                        <strong>Due By</strong>
+                    </div>
+                    <div class="column has-text-centered">
+                        <strong>Options</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+    @foreach (var item in Model)
+    {
+        <article class="media hide-overflow">
+                        <div class="media-content hide-overflow">
+                            <div class="content">
+                                <form asp-action="UpdateCartItem" asp-route-id="@item.ID">
+                                    <div class="columns is-mobile">
+                                        <div class="column pad-top-s">
+                                            <strong>@item.TaskName</strong>
+                                        </div>
+                                        <div class="column pad-top-s">
+                                            @item.Description
+                                        </div>
+                                        <div class="column">
+                                            @item.PlannedDateComplete
+                                        </div>
+                                        <div class="column has-text-centered">
+                                            <div class="columns is-gapless">
+                                                <div class="column">
+                                                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                                                </div>
+                                                <div class="column">
+                                                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                                                </div>
+                                                <div class="column">
+                                                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </article>    
+    }

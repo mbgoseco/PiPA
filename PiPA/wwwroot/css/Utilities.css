@@ -182,3 +182,7 @@
     margin: auto;
     text-align: center;
 }
+
+.no-overflow {
+    overflow: hidden;
+}
