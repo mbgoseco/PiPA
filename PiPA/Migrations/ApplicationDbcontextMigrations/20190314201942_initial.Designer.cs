@@ -10,8 +10,8 @@ using PiPA.Data;
 namespace PiPA.Migrations.ApplicationDbcontextMigrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20190314191721_deploy")]
-    partial class deploy
+    [Migration("20190314201942_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -3,24 +3,56 @@
 @{
     Layout = "_Layout";
 }
-
-<h1>Create Task</h1>
-
-<form asp-action="Create" method="post">
-    <div>
-        <label asp-for="TaskName">Task Name: </label>
-        <input asp-for="TaskName" />
-
-        <label asp-for="Description"> Description: </label>
-        <input asp-for="Description" />
-
-        <label asp-for="DateCreated">Date created: </label>
-        <input asp-for="DateCreated" />
-
-        <label asp-for="PlannedDateComplete">Planned date of completion: </label>
-        <input asp-for="PlannedDateComplete" />
-
-        <input type="submit" value="Create"/>
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title is-size-3">
+                Create a Task
+            </h1>
+        </div>
     </div>
-</form>
+</section>
 
+<section class="pads-xs">
+    <div class="container">
+        <form asp-action="Create" method="post">
+            <div class="field">
+                <label asp-for="TaskName" class="label">Task Name: </label>
+                <div class="control">
+                    <input asp-for="TaskName" class="input" type="text" placeholder="eg. Walk the Dog" />
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="Description" class="label"> Description: </label>
+                <div class="control">
+                    <input asp-for="Description" class="input" type="text" placeholder="eg. Take the dog for a walk in the park." />
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="DateCreated" class="label">Date created: </label>
+                <div class="control has-icons-left">
+                    <input asp-for="DateCreated" class="input" type="date" />
+                    <span class="icon is-small is-left">
+                        <i class="far fa-calendar"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="field">
+                <label asp-for="PlannedDateComplete" class="label">Planned date of completion: </label>
+                <div class="control has-icons-left">
+                    <input asp-for="PlannedDateComplete" class="input" type="date" />
+                    <span class="icon is-small is-left">
+                        <i class="far fa-calendar"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="buttons">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
