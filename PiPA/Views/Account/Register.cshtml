@@ -28,7 +28,7 @@
     <div class="field">
         <label class="label">Birthdate</label>
         <div class="control has-icons-left">
-            <input asp-for="Birthday" class="input" type="datetime" placeholder="Whats your birth date?" value="">
+            <input asp-for="Birthday" class="input" type="date" placeholder="Whats your birth date?" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-birthday-cake"></i>
             </span>
@@ -49,6 +49,16 @@
         <label class="label">Password</label>
         <div class="control has-icons-left">
             <input asp-for="Password" class="input" type="password" placeholder="Enter password" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-passport"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">ConfirmPassword</label>
+        <div class="control has-icons-left">
+            <input asp-for="ConfirmPassword" class="input" type="password" placeholder="Confirm password" value="">
             <span class="icon is-small is-left">
                 <i class="fas fa-passport"></i>
             </span>

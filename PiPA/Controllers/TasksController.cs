@@ -24,17 +24,19 @@ namespace PiPA.Controllers
         private readonly ITasks _tasks;
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _sign;
+        private ILists _lists;
 
         /// <summary>
         /// connects to task dependency injection
         /// </summary>
         /// <param name="tasks">which injection</param>
-        public TasksController(ITasks tasks, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> sign)
+        public TasksController(ITasks tasks, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> sign, ILists lists)
         {
       
             _userManager = userManager;
             _tasks = tasks;
             _sign = sign;
+            _lists = lists;
         }
 
         /// <summary>
@@ -43,7 +45,11 @@ namespace PiPA.Controllers
         /// <returns>the task home index</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _tasks.GetAllTasks());
+            //get email
+            var userEmail = User.Identity.Name;
+            //so can get list
+            int listId = await _lists.GetOneListId(userEmail);
+            return View(await _tasks.GetAllTasksForAList(listId));
         }
 
         /// <summary>
@@ -66,7 +72,8 @@ namespace PiPA.Controllers
             Tasks newtask = tasks;
             if (ModelState.IsValid)
             {
-                newtask.ListID = 1; //for now since we only have one list
+                var listid = await _lists.GetOneListId(User.Identity.Name);
+                newtask.ListID = listid; 
                 newtask.CompletedDate = new DateTime(3000, 1, 1, 0, 0, 0); // since just created no complete date yet and can't do null
                 newtask.IsComplete = false; // since it was just created it isn't done yet
                 await _tasks.CreateTask(newtask);

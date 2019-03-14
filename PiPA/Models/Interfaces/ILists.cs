@@ -8,7 +8,7 @@ namespace PiPA.Models.Interfaces
     public interface ILists
     {
         Task CreateList(Lists lists);
-        Task<Lists> GetOneList(int id);
+        Task<int> GetOneListId(string id);
         Task<List<Lists>> GetAllLists();
         Task UpdateList(Lists lists);
         Task DeleteList(int id);

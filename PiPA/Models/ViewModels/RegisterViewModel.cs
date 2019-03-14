@@ -46,10 +46,10 @@ namespace PiPA.Models.ViewModels
         /// <summary>
         /// Gets or sets the ConfirmPassword
         /// </summary>
-        //[Required]
-        //[Display(Name = "Confirm Password")]
-        //[DataType(DataType.Password)]
-        //[Compare("Password", ErrorMessage = "The password and confirmation do not match")]
-        //public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "The password and confirmation do not match")]
+        public string ConfirmPassword { get; set; }
     }
 }

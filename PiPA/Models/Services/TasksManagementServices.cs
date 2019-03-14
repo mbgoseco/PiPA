@@ -50,9 +50,12 @@ namespace PiPA.Models.Services
         /// gets all tasks in the table
         /// </summary>
         /// <returns>a list of all the tasks</returns>
-        public async Task<List<Tasks>> GetAllTasks()
+        public async Task<List<Tasks>> GetAllTasksForAList(int id)
         {
-            return await _context.TasksTable.ToListAsync();
+            var taskItems = from ti in _context.TasksTable
+                            .Where(i => i.ListID == id)
+                            select ti;
+            return await taskItems.ToListAsync();
         }
 
         /// <summary>
