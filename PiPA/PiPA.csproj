@@ -13,8 +13,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\images\raspipa.PNG" />
-  </ItemGroup>
-
 </Project>
