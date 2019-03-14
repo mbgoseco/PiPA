@@ -90,9 +90,9 @@ namespace PiPAUnitTesting
 
                 await ListService.CreateList(testLists6);
 
-                var List2Answer = await ListService.GetOneList(testLists6.UserID);
+                var List2Answer = await ListService.GetOneListId(testLists6.UserID);
 
-                Assert.Equal(testLists6, List2Answer);
+                Assert.Equal(testLists6.ID, List2Answer);
             }
         }
 
@@ -422,7 +422,7 @@ namespace PiPAUnitTesting
                 await TaskService.CreateTask(testTask17);
                 await TaskService.CreateTask(testTask18);
 
-                var Task3Answer = await TaskService.GetAllTasks();
+                var Task3Answer = await TaskService.GetAllTasksForAList(1);
 
                 Assert.Equal(2, Task3Answer.Count);
             }
