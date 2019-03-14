@@ -5,6 +5,7 @@ using Xunit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using PiPA.Models.Services;
+using PiPA.Models.ViewModels;
 
 namespace PiPAUnitTesting
 {
@@ -74,7 +75,7 @@ namespace PiPAUnitTesting
 
         //getonelist
         [Fact]
-        public async void TestGetOneList()
+        public async void TestGetOneListID()
         {
             DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("GetOneList").Options;
 
@@ -493,5 +494,240 @@ namespace PiPAUnitTesting
             }
         }
 
+        //login view model======================================
+        //getter email
+        [Fact]
+        public void TestGetLoginEmail()
+        {
+            LoginViewModel testLVM1 = new LoginViewModel();
+            testLVM1.Email = "fake@email.com";
+            Assert.Equal("fake@email.com", testLVM1.Email);
+        }
+
+        //setter email
+        [Fact]
+        public void TestSetLoginEmail()
+        {
+            LoginViewModel testLVM2 = new LoginViewModel();
+            testLVM2.Email = "fake@email.com";
+            testLVM2.Email = "newFake@email.com";
+            Assert.Equal("newFake@email.com", testLVM2.Email);
+        }
+
+        //getter for password
+        [Fact]
+        public void TestGetLoginPW()
+        {
+            LoginViewModel testLVM3 = new LoginViewModel();
+            testLVM3.Password = "password1!";
+            Assert.Equal("password1!", testLVM3.Password);
+        }
+
+        //setter for password
+        [Fact]
+        public void TestSetLoginPW()
+        {
+            LoginViewModel testLVM4 = new LoginViewModel();
+            testLVM4.Password = "password1!";
+            testLVM4.Password = "NewPassword1!";
+            Assert.Equal("NewPassword1!", testLVM4.Password);
+        }
+
+        //register view model====================================
+        //getter firstname
+        [Fact]
+        public void TestGetRegFirstName()
+        {
+            RegisterViewModel testRVM1 = new RegisterViewModel();
+            testRVM1.FirstName = "aName";
+            Assert.Equal("aName", testRVM1.FirstName);
+        }
+
+        //setter first name
+        [Fact]
+        public void TestSetRegFirstname()
+        {
+            RegisterViewModel testRVM2 = new RegisterViewModel();
+            testRVM2.FirstName = "aName";
+            testRVM2.FirstName = "NewName";
+            Assert.Equal("NewName", testRVM2.FirstName);
+        }
+
+        //getter last name
+        [Fact]
+        public void TestGetRegLastName()
+        {
+            RegisterViewModel testRVM3 = new RegisterViewModel();
+            testRVM3.LastName = "aLastName";
+            Assert.Equal("aLastName", testRVM3.LastName);
+        }
+
+        //setter last name
+        [Fact]
+        public void TestSetRegLastName()
+        {
+            RegisterViewModel testRVM4 = new RegisterViewModel();
+            testRVM4.LastName = "aLastName";
+            testRVM4.LastName = "NewLastName";
+            Assert.Equal("NewLastName", testRVM4.LastName);
+        }
+
+        //getter birthday
+        [Fact]
+        public void TestGetRegBirthday()
+        {
+            RegisterViewModel testRVM5 = new RegisterViewModel();
+            DateTime tempDate1 = new DateTime(2019, 3, 14, 11, 0, 0);
+            testRVM5.Birthday = tempDate1;
+            Assert.Equal(tempDate1, testRVM5.Birthday);
+        }
+
+        //setter birthday
+        [Fact]
+        public void TestSetRegBirthday()
+        {
+            RegisterViewModel testRVM6 = new RegisterViewModel();
+            DateTime tempDate2 = new DateTime(2019, 3, 14, 11, 0, 0);
+            DateTime tempDate3 = new DateTime(2019, 4, 14, 11, 0, 0);
+            testRVM6.Birthday = tempDate2;
+            testRVM6.Birthday = tempDate3;
+            Assert.Equal(tempDate3, testRVM6.Birthday);
+        }
+
+        //getter email
+        [Fact]
+        public void TestGetRegEmail()
+        {
+            RegisterViewModel testRVM7 = new RegisterViewModel();
+            testRVM7.Email = "anEmail";
+            Assert.Equal("anEmail", testRVM7.Email);
+        }
+
+        //setter email
+        [Fact]
+        public void TestSetRegEmail()
+        {
+            RegisterViewModel testRVM8 = new RegisterViewModel();
+            testRVM8.Email = "anEmail";
+            testRVM8.Email = "NewEmail";
+            Assert.Equal("NewEmail", testRVM8.Email);
+        }
+
+        //getter password
+        [Fact]
+        public void TestGetRegPW()
+        {
+            RegisterViewModel testRVM9 = new RegisterViewModel();
+            testRVM9.Password = "aBadPassword";
+            Assert.Equal("aBadPassword", testRVM9.Password);
+        }
+
+        //setter password
+        [Fact]
+        public void TestSetRegPW()
+        {
+            RegisterViewModel testRVM10 = new RegisterViewModel();
+            testRVM10.Password = "aBadPassword";
+            testRVM10.Password = "aBetterPassword!1";
+            Assert.Equal("aBetterPassword!1", testRVM10.Password);
+        }
+
+        //getter confirm pw
+        [Fact]
+        public void TestGetRegConfPW()
+        {
+            RegisterViewModel testRVM11 = new RegisterViewModel();
+            testRVM11.ConfirmPassword = "aBadPassword";
+            Assert.Equal("aBadPassword", testRVM11.ConfirmPassword);
+        }
+
+        //setter confirm pw
+        [Fact]
+        public void TestSetRegConfPW()
+        {
+            RegisterViewModel testRVM12 = new RegisterViewModel();
+            testRVM12.ConfirmPassword = "aBadPassword";
+            testRVM12.ConfirmPassword = "aBetterPassword!1";
+            Assert.Equal("aBetterPassword!1", testRVM12.ConfirmPassword);
+        }
+
+        //application user====================================
+        //getter firstname
+        [Fact]
+        public void TestGetAppUserFirstName()
+        {
+            ApplicationUser testUser1 = new ApplicationUser();
+            testUser1.FirstName = "aFirstName";
+            Assert.Equal("aFirstName", testUser1.FirstName);
+        }
+
+        //setter lastname
+        [Fact]
+        public void TestSetAppUserFirstName()
+        {
+            ApplicationUser testUser2 = new ApplicationUser();
+            testUser2.FirstName = "aFirstName";
+            testUser2.FirstName = "NewFirstName";
+            Assert.Equal("NewFirstName", testUser2.FirstName);
+        }
+
+        //getter lastname
+        [Fact]
+        public void TestGetAppUserLastName()
+        {
+            ApplicationUser testUser3 = new ApplicationUser();
+            testUser3.LastName = "aLastName";
+            Assert.Equal("aLastName", testUser3.LastName);
+        }
+        //setter lastename
+        [Fact]
+        public void TestSetAppUserLastName()
+        {
+            ApplicationUser testUser4 = new ApplicationUser();
+            testUser4.LastName = "aLastName";
+            testUser4.LastName = "NewLastName";
+            Assert.Equal("NewLastName", testUser4.LastName);
+        }
+
+        //getter address
+        [Fact]
+        public void TestGetAppUserAddress()
+        {
+            ApplicationUser testUser5 = new ApplicationUser();
+            testUser5.Address = "an address";
+            Assert.Equal("an address", testUser5.Address);
+        }
+
+        //setter address
+        [Fact]
+        public void TestSetAppUserAddress()
+        {
+            ApplicationUser testUser6 = new ApplicationUser();
+            testUser6.Address = "an address";
+            testUser6.Address = "a new address";
+            Assert.Equal("a new address", testUser6.Address);
+        }
+
+        //getter birthday
+        [Fact]
+        public void TestGetAppUserBirthday()
+        {
+            ApplicationUser testUser7 = new ApplicationUser();
+            DateTime tempDateA = new DateTime(2019, 3, 14, 11, 0, 0);
+            testUser7.Birthday = tempDateA;
+            Assert.Equal(tempDateA, testUser7.Birthday);
+        }
+
+        //setter birthday
+        [Fact]
+        public void TestSetAppUserBirthday()
+        {
+            ApplicationUser testUser8 = new ApplicationUser();
+            DateTime tempDateB = new DateTime(2019, 3, 14, 11, 0, 0);
+            DateTime tempDateC = new DateTime(2019, 5, 14, 11, 0, 0);
+            testUser8.Birthday = tempDateB;
+            testUser8.Birthday = tempDateC;
+            Assert.Equal(tempDateC, testUser8.Birthday);
+        }
     }
 }

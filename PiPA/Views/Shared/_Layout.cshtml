@@ -13,16 +13,18 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" integrity="sha256-8B1OaG0zT7uYA572S2xOxWACq9NXYPQ+U5kHPV1bJN4=" crossorigin="anonymous" />
     <link href="~/css/StyleSheet.scss" rel="stylesheet" />
+    <link href="~/css/Utilities.css" rel="stylesheet" />
+    <link href="~/css/Styles.css" rel="stylesheet" type="text/css" />
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav class="navbar" role="navigation" aria-label="main navigation" id="pipaitem">
             <div class="navbar-brand">
-                <a class="navbar-item" asp-action="Index" asp-controller="Home">
-                    <img src="~/images/PiPA-logo.svg" alt="Logo" width="112" asp-append-version="true" />
+                <a class="navbar-item" asp-page="/Home">
+                    <img src="~/images/logo.png" alt="Logo" asp-append-version="true" id="pipalogo"/>
                 </a>
 
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="desktopNavbar">
@@ -36,15 +38,15 @@
                 <div class="navbar-start">
                     @if (!signInManager.IsSignedIn(User))
                     {
-                        <a class="navbar-item" asp-action="Index" asp-controller="Home">Home</a>
+                        <a class="navbar-item" asp-page="/Home">Home</a>
 
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link" href="#">About</a>
 
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="#">What is PiPA?</a>
-                                <a class="navbar-item" href="#">Procurement</a>
-                                <a class="navbar-item" href="#">Setup</a>
+                                <a class="navbar-item" href="#WhatIsPiPA">What is PiPA?</a>
+                                <a class="navbar-item" href="#UsePiPA">How do you use it?</a>
+                                <a class="navbar-item" href="#SetupPiPA">Set it up!</a>
                             </div>
                         </div>
                     }
@@ -77,6 +79,13 @@
         <div>
             @RenderBody()
         </div>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    &#169; <strong>PiPA</strong> 2019
+                </p>
+            </div>
+        </footer>
     }
     else
     {
@@ -85,8 +94,15 @@
                 @RenderBody()
             </div>
         </section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    &#169; <strong>PiPA</strong> 2019
+                </p>
+            </div>
+        </footer>
     }
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="~/js/scripts.js"></script>
 </body>
 </html>
