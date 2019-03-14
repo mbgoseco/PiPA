@@ -94,6 +94,7 @@ namespace PiPA.Controllers
                 {
                     var currentUser = _userManager.Users.First(u => u.UserName == lvm.Email);
                     currentUser.LoggedIn = true;
+                    await _userManager.UpdateAsync(currentUser);
                     return RedirectToAction("Index", "Tasks");
                 }
             }
@@ -109,8 +110,9 @@ namespace PiPA.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var currentUser = _userManager.Users.First(u => u.LoggedIn == true);
             currentUser.LoggedIn = false;
+            await _userManager.UpdateAsync(currentUser);
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
