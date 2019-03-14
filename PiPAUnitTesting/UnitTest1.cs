@@ -75,7 +75,7 @@ namespace PiPAUnitTesting
 
         //getonelist
         [Fact]
-        public async void TestGetOneList()
+        public async void TestGetOneListID()
         {
             DbContextOptions<PADbcontext> options = new DbContextOptionsBuilder<PADbcontext>().UseInMemoryDatabase("GetOneList").Options;
 
