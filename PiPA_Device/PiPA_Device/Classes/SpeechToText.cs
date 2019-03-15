@@ -23,6 +23,10 @@ namespace PiPA_Device.Classes
             _regionUri = regionUri;
         }
 
+        /// <summary>
+        /// Starts speech recognition, and returns after a single utterance is recognized. The end of a single utterance is determined by listening for silence at the end or until a maximum of 15 seconds of audio is processed. The task returns the recognition text as result.
+        /// </summary>
+        /// <returns>User's speech rendered as text and response from PiPA device</returns>
         public async Task RecognizeSpeechAsync()
         {
             var config = SpeechConfig.FromSubscription(_subKey, _regionUri);
@@ -32,13 +36,7 @@ namespace PiPA_Device.Classes
             using (var recognizer = new SpeechRecognizer(config))
             {
                 Console.WriteLine("Say something...");
-
-                // Starts speech recognition, and returns after a single utterance is recognized. The end of a
-                // single utterance is determined by listening for silence at the end or until a maximum of 15
-                // seconds of audio is processed.  The task returns the recognition text as result. 
-                // Note: Since RecognizeOnceAsync() returns only a single utterance, it is suitable only for single
-                // shot recognition like command or query. 
-                // For long-running multi-utterance recognition, use StartContinuousRecognitionAsync() instead.
+                
                 var result = await recognizer.RecognizeOnceAsync();
 
                 // Checks result and perform action based on result text.
@@ -87,6 +85,10 @@ namespace PiPA_Device.Classes
             }
         }
 
+        /// <summary>
+        /// Starts an instance of continuous speech regocnition. Task will return only when an recognized block of speech contains the keyphrase to wake up PiPA.
+        /// </summary>
+        /// <returns>Response from PiPA after wake up command is heard</returns>
         public async Task SpeechContinuousRecognitionAsync()
         {
             var config = SpeechConfig.FromSubscription(_subKey, _regionUri);

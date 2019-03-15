@@ -19,6 +19,11 @@ namespace PiPA_Device.Classes
         //Access token expires every 10 minutes. Renew it every 9 minutes.
         private const int RefreshTokenDuration = 9;
 
+        /// <summary>
+        /// Creates an access token using the provided subscrition key and uri
+        /// </summary>
+        /// <param name="subscriptionKey">Azure Cognitive Services Speech API Key</param>
+        /// <param name="tokenUri">Token URI string</param>
         public Authentication(string subscriptionKey, string tokenUri)
         {
             _subscriptionKey = subscriptionKey;
@@ -32,17 +37,28 @@ namespace PiPA_Device.Classes
                                             TimeSpan.FromMilliseconds(-1));
         }
 
+        /// <summary>
+        /// Gets the current access token
+        /// </summary>
+        /// <returns>Access token string</returns>
         public string GetAccessToken()
         {
             return _token;
         }
 
+        /// <summary>
+        /// Gets a new access token when the current one expires
+        /// </summary>
         private void RenewAccessToken()
         {
             _token = FetchToken(_tokenUri, _subscriptionKey).Result;
             Console.WriteLine("Renewed token.");
         }
 
+        /// <summary>
+        /// Attempts to renew the access token after the current token expires (> 9 minutes)
+        /// </summary>
+        /// <param name="stateInfo">Current state of token object</param>
         private void OnTokenExpiredCallback(object stateInfo)
         {
             try
@@ -66,6 +82,12 @@ namespace PiPA_Device.Classes
             }
         }
 
+        /// <summary>
+        /// Fetches the access token using the provided uri and subscription key from Azure Coginitive Services Speech
+        /// </summary>
+        /// <param name="fetchUri">Fetch URI string</param>
+        /// <param name="subscriptionKey">Azure Cognitive Services Speech subscription key</param>
+        /// <returns>Http response message containing token</returns>
         private async Task<string> FetchToken(string fetchUri, string subscriptionKey)
         {
             using (var client = new HttpClient())

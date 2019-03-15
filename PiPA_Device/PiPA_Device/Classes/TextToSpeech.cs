@@ -24,6 +24,10 @@ namespace PiPA_Device.Classes
             Uri = uri;
         }
 
+        /// <summary>
+        /// Selects a string phrase based on the command or input given to PiPA device. This phrase is then synthesized into a wav file and then played back to the user as a response from PiPA.
+        /// </summary>
+        /// <returns>Synthesized text to speech response from PiPA</returns>
         public async Task CreateSpeech()
         {
             string host = Uri;
