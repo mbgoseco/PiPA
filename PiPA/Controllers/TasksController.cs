@@ -115,7 +115,7 @@ namespace PiPA.Controllers
         /// <returns>to the task home page when done</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID, TaskName, Description, PlannedDateComplete, CompletedDate, IsComplete")] Tasks tasks)
+        public async Task<IActionResult> Edit(int id, [Bind("ID, ListID, TaskName, Description, PlannedDateComplete, CompletedDate, IsComplete")] Tasks tasks)
         {
             await _tasks.UpdateTask(tasks);
             return RedirectToAction(nameof(Index));
