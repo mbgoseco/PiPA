@@ -73,7 +73,7 @@ namespace PiPA.Controllers
         /// <summary>
         /// Gets login view and returns it back to the user
         /// </summary>
-        /// <returns></returns>
+        /// <returns>View of login page</returns>
         [HttpGet]
         public IActionResult Login() => View();
 
@@ -81,7 +81,7 @@ namespace PiPA.Controllers
         /// Creates a Login session for the user
         /// </summary>
         /// <param name="lvm"></param>
-        /// <returns>View</returns>
+        /// <returns>View of user tasks page</returns>
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
@@ -105,7 +105,7 @@ namespace PiPA.Controllers
         /// <summary>
         /// Will succesfully sign out a user
         /// </summary>
-        /// <returns>View</returns>
+        /// <returns>View of home page</returns>
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Logout()
