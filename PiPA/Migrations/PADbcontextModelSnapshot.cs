@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PiPA.Data;
 
-namespace PiPA.Migrations.PADbcontextMigrations
+namespace PiPA.Migrations
 {
     [DbContext(typeof(PADbcontext))]
     partial class PADbcontextModelSnapshot : ModelSnapshot
