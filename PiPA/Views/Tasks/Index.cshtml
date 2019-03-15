@@ -36,38 +36,40 @@
         </div>
     </article>
 </section>
+<section class="pad-bottom-xl">
     @foreach (var item in Model)
     {
         <article class="media hide-overflow">
-                        <div class="media-content hide-overflow">
-                            <div class="content">
-                                <form asp-action="UpdateCartItem" asp-route-id="@item.ID">
-                                    <div class="columns is-mobile">
-                                        <div class="column pad-top-s">
-                                            <strong>@item.TaskName</strong>
-                                        </div>
-                                        <div class="column pad-top-s">
-                                            @item.Description
-                                        </div>
-                                        <div class="column">
-                                            @item.PlannedDateComplete
-                                        </div>
-                                        <div class="column has-text-centered">
-                                            <div class="columns is-gapless">
-                                                <div class="column">
-                                                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
-                                                </div>
-                                                <div class="column">
-                                                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
-                                                </div>
-                                                <div class="column">
-                                                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="media-content hide-overflow">
+                <div class="content">
+                    <form asp-action="UpdateCartItem" asp-route-id="@item.ID">
+                        <div class="columns is-mobile">
+                            <div class="column pad-top-s">
+                                <strong>@item.TaskName</strong>
+                            </div>
+                            <div class="column pad-top-s">
+                                @item.Description
+                            </div>
+                            <div class="column">
+                                @item.PlannedDateComplete
+                            </div>
+                            <div class="column has-text-centered">
+                                <div class="columns is-gapless">
+                                    <div class="column">
+                                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
                                     </div>
-                                </form>
+                                    <div class="column">
+                                        <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                                    </div>
+                                    <div class="column">
+                                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </article>    
+                    </form>
+                </div>
+            </div>
+        </article>
     }
+</section>
