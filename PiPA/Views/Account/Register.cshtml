@@ -1,0 +1,76 @@
+﻿@model PiPA.Models.ViewModels.RegisterViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<form method="post">
+    <div class="field">
+        <label class="label">First Name</label>
+        <div class="control has-icons-left">
+            <input asp-for="FirstName" class="input" type="text" placeholder="What's your first name?" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control has-icons-left">
+            <input asp-for="LastName" class="input" type="text" placeholder="Whats your last name?" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Birthdate</label>
+        <div class="control has-icons-left">
+            <input asp-for="Birthday" class="input" type="date" placeholder="Whats your birth date?" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-birthday-cake"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+            <input asp-for="Email" class="input" type="email" placeholder="Enter email" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left">
+            <input asp-for="Password" class="input" type="password" placeholder="Enter password" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-passport"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">ConfirmPassword</label>
+        <div class="control has-icons-left">
+            <input asp-for="ConfirmPassword" class="input" type="password" placeholder="Confirm password" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-passport"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link" type="submit">Submit</button>
+        </div>
+        <div class="control">
+            <button class="button is-text">Cancel</button>
+        </div>
+    </div>
+</form>

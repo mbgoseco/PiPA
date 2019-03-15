@@ -1,0 +1,41 @@
+﻿@model PiPA.Models.ViewModels.LoginViewModel
+@using Microsoft.AspNetCore.Identity;
+@using PiPA.Models;
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    Layout = "_Layout";
+}
+
+<form method="post">
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left">
+            <input asp-for="Email" class="input" type="email" placeholder="Enter email" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="field">
+        <label class="label">Password</label>
+        <div class="control has-icons-left">
+            <input asp-for="Password" class="input" type="password" placeholder="Enter password" value="">
+            <span class="icon is-small is-left">
+                <i class="fas fa-passport"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link" type="submit">Submit</button>
+        </div>
+        <div class="control">
+            <button class="button is-text">Cancel</button>
+        </div>
+    </div>
+</form>
