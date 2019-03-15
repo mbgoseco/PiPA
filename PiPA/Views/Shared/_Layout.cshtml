@@ -61,7 +61,7 @@
                         <div class="buttons">
                             @if (signInManager.IsSignedIn(User))
                             {
-                                <button asp-action="Create" class="button">Add a Task</button>
+                                <a asp-controller="Tasks" asp-action="Create" class="button">Add a Task</a>
                                 <a class="button is-danger" href="~/Account/Logout">Log Out</a>
                             }
                             else

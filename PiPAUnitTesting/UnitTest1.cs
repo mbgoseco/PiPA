@@ -729,5 +729,25 @@ namespace PiPAUnitTesting
             testUser8.Birthday = tempDateC;
             Assert.Equal(tempDateC, testUser8.Birthday);
         }
+
+        //getter loggedin
+        [Fact]
+        public void TestGetAppUserLoggedIn()
+        {
+            ApplicationUser testUser9 = new ApplicationUser();
+            testUser9.LoggedIn = true;
+            Assert.True(testUser9.LoggedIn);
+        }
+
+        //setter loggedin
+        [Fact]
+        public void TestSetAppUserLoggedIn()
+        {
+            ApplicationUser testUser10 = new ApplicationUser();
+            testUser10.LoggedIn = true;
+            testUser10.LoggedIn = false;
+            Assert.False(testUser10.LoggedIn);
+        }
+
     }
 }

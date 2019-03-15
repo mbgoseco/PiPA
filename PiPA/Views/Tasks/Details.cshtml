@@ -36,10 +36,10 @@
     <div class="buttons">
         <div class="field is-grouped">
             <div class="control">
-                <button asp-action="Edit" asp-route-id="@Model.ID" class="button is-link">Edit</button>
+                <a asp-action="Edit" asp-route-id="@Model.ID" class="button is-link">Edit</a>
             </div>
             <div class="control">
-                <button asp-action="Delete" asp-route-id="@Model.ID" class="button is-danger">Delete</button>
+                <a asp-action="Delete" asp-route-id="@Model.ID" class="button is-danger">Delete</a>
             </div>
             <div class="control">
                 <a asp-action="Index" class="button">Back to All Tasks</a>
