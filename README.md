@@ -12,12 +12,12 @@ In addition to verbally adding tasks, users have the ability to create, view, ed
 - Microsoft Visual Studio Community 2017 (Version 15.9.4)
 - C#
 - ASP.Net Core
+- Azure Cognitive Services
 - Entity Framework
 - MVC
 - xUnit
 - Azure
 - Bulma
-- Azure Cognitive Services
 
 ## Getting Started
 Clone this repository to your local machine.
@@ -29,11 +29,27 @@ Utilize dotnet CLI or Visual Studio, to build the solution. The dotnet tools wil
 Before running the application, one will need to add the migraton and update their database for both DBContexts (ApplicationDbcontext and PADbcontext) SQL server of your choice.
 
 ## Usage
---------------THIS IS WHERE THE IMAGES OF THE SITE WILL GO----------
+### Home Page
+![Home Page](./Assets/home-1.PNG)
+
+### Register Page
+![Register Page](./Assets/register.PNG)
+
+### Login Page
+![Login Page](./Assets/login.PNG)
+
+### Tasks Page
+![Tasks Page](./Assets/tasks-2.PNG)
+
+### Create Task Page
+![Create Task Page](./Assets/create-task.PNG)
+
+### Edit Task Page
+![Edit Task Page](./Assets/edit-task.PNG)
 
 ## Design
 ### Database Schema
-![DBSchema](./assets/Schema.JPG)
+![DBSchema](./PiPA/assets/Schema.JPG)
 ApplicationUser Table are additional fields for the .Net built in Identity tables. A User can have many Lists.
 List Table are for lists a user can add tasks to. A List can have many TaskItems.
 TaskItems Table are for tasks that can be added to Lists. 
@@ -66,22 +82,22 @@ public class Tasks
 
 ### Wireframes
 #### Home Page
-![Home](./assets/HOME_PAGE.PNG)
+![Home](./PiPA/assets/HOME_PAGE.PNG)
 
 #### Registration Page
-![Register](./assets/REGISTER_PAGE.PNG)
+![Register](./PiPA/assets/REGISTER_PAGE.PNG)
 
 #### Login Page
-![Login](./assets/LOGIN_PAGE.PNG)
+![Login](./PiPA/assets/LOGIN_PAGE.PNG)
 
 #### Dashboard Page
-![Dashboard](./assets/DASHBOARD_PAGE.PNG)
+![Dashboard](./PiPA/assets/DASHBOARD_PAGE.PNG)
 
 #### View Task Page
-![View Task](./assets/VIEW_TASK_PAGE.PNG)
+![View Task](./PiPA/assets/VIEW_TASK_PAGE.PNG)
 
 #### Edit Task Page
-![Edit](./assets/EDIT_TASK_PAGE.PNG)
+![Edit](./PiPA/assets/EDIT_TASK_PAGE.PNG)
 
 ## Authors
 Charles Clemens
